@@ -14,4 +14,8 @@ angular.module('webCalculatorApp')
       currentNumber: [],
       hasDecimal: false
     };
+    //initial value of display directive :)
+    $scope.display = {
+      value: 0
+    };
   });
