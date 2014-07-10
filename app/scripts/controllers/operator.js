@@ -14,5 +14,10 @@ angular.module('webCalculatorApp')
       //Feel free to take a challenge and combine keypadctrl and operatorctrl into one
       console.log('this OPERATOR key was pressed:' + buttonId);
       
+	  //emit (upwards) the keypad button press event!
+	  $scope.$emit('pressed.operation.button', {
+        buttonId: buttonId
+      });
+
     };
   });
