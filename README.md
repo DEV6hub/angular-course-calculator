@@ -1,0 +1,2 @@
+##AngularJS Fundamentals Course Lab
+Visit the [New Toronto Group website](http://www.newyyz.com/) for more details on this [course](http://www.newyyz.com/mm/training/find-a-course/angularjs-fundamentals/).
