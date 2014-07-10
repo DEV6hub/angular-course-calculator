@@ -57,12 +57,20 @@ angular.module('webCalculatorApp')
       var value = data.buttonId;
       console.log('event received from KeyPad in main controller. Button pressed was: ' + value);
 
-      $scope.model.currentNumber.push(value);
-      var displayString = $scope.model.currentNumber.toString();
-      $scope.display.value = removeCommmas(displayString);
-      $scope.$apply();
-
-      $scope.$apply(); //tell angular to update the bindings
+      var allowInput = true;
+      if (value === '.') {
+        if ($scope.model.hasDecimal === true) {
+          allowInput = false;
+        } else {
+          $scope.model.hasDecimal = true;
+        }
+      }
+      if (allowInput) {
+        $scope.model.currentNumber.push(value);
+        var displayString = $scope.model.currentNumber.toString();
+        $scope.display.value = removeCommmas(displayString);
+        $scope.$apply();
+      }
 
     });
 
@@ -70,16 +78,21 @@ angular.module('webCalculatorApp')
     $scope.$on('pressed.operation.button', function (event, data) {
       var value = data.buttonId;
 
+      if (value === 'C') {
+        $scope.display.value = 0;
+        $scope.model.currentNumber = [];
+        $scope.model.expression = [];
+      } else {
+        $scope.display.value = data.buttonId;
+        console.log('event received from Operator Pad in main controller. Button pressed was: ' + $scope.display.value);
 
-      $scope.display.value = data.buttonId;
-      console.log('event received from Operator Pad in main controller. Button pressed was: ' + $scope.display.value);
+        //push our number!
+        $scope.model.expression.push($scope.model.currentNumber);
+        $scope.model.currentNumber = [];
+        $scope.model.expression.push(value);
 
-      //push our number!
-      $scope.model.expression.push($scope.model.currentNumber);
-      $scope.model.currentNumber = [];
-      $scope.model.expression.push(value);
-
-      $scope.$apply(); //tell angular to update the bindings
+      }
+      $scope.$apply();
 
     });
   });
