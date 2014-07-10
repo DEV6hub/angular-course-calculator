@@ -1,5 +1,38 @@
 <div ng-controller="MainCtrl">
     <p>Main Controller</p>
     <hr />
+    <div class="keypad">
+        <p>Keypad Controller</p>
+        <hr />
+        <div class="keyPadColumn">
+            <calculator-button action="keyPress(buttonId)" button-label="7"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="4"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="1"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="0"></calculator-button>
+        </div>
+        <div class="keyPadColumn">
+            <calculator-button action="keyPress(buttonId)" button-label="8"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="5"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="2"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="."></calculator-button>
+        </div>
+        <div class="keyPadColumn">
+            <calculator-button action="keyPress(buttonId)" button-label="9"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="6"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="3"></calculator-button>
+        </div>
+        
+    </div>
     
+    <div>
+        <p>Operator Controller</p>
+        <hr />
+        <div class="keyPadColumn">
+            <calculator-button action="keyPress(buttonId)" button-label="/"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="*"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="-"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="+"></calculator-button>
+            <calculator-button action="keyPress(buttonId)" button-label="C"></calculator-button>
+        </div>
+    </div>
 </div>
