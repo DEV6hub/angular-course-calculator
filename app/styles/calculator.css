@@ -1,4 +1,4 @@
-.keypad, .operator-pad{
+.keypad,.operator-pad{
 	padding:20px; /* visually show hierarchy */
 }
 .keypad{
