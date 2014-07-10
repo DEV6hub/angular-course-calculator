@@ -1,48 +1,57 @@
-.keypad,.operator-pad{
-	padding:20px; /* visually show hierarchy */
+.keypad,
+.operator-pad {
+  padding: 20px;
+  /* visually show hierarchy */
 }
-.keypad{
+.keypad {
   overflow: hidden;
-  float:left; 
+  float: left;
+  clear: both;
 }
 .keyPadColumn {
-    width: 60px;
-    float:left;
-    overflow: hidden;
+  width: 60px;
+  float: left;
+  overflow: hidden;
 }
-.keyPadColumn button, .operator-pad button {
-	width: 50px;
-	height:50px;
-	margin-bottom: 10px;
-	background-color: #eeeeee;
-	border:1px solid #dddddd;
-	font-size: 1.5em;
-	color: #555555;
+.keyPadColumn button,
+.operator-pad button {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+  background-color: #eeeeee;
+  border: 1px solid #dddddd;
+  font-size: 1.5em;
+  color: #555555;
 }
-
 p {
-	font-size:1.2em;
-	color: #555555;
+  font-size: 1.2em;
+  color: #555555;
 }
-
-.keyPadColumn button:active, .operator-pad button:active {
-	background-color: #cccddd;
-	border: 1px solid #999999;
+.keyPadColumn button:active,
+.operator-pad button:active {
+  background-color: #cccddd;
+  border: 1px solid #999999;
 }
-
 .operator-pad {
-	float:left;
+  float: left;
 }
-.display{
-    width: 400px;
-    background-color: #E4FFD1;
-    color: #555555;
-    text-align: right;
-    font-size: 2em;
-    border: 1px solid #999999;
-    padding:10px;
+.display {
+  width: 400px;
+  background-color: #E4FFD1;
+  color: #555555;
+  text-align: right;
+  font-size: 2em;
+  border: 1px solid #999999;
+  padding: 10px;
+  float: left;
 }
-
-.footer{
-	clear:both;
+.equality {
+  float: left;
+  margin-left: 10px;
+  height: 62px;
+  width: 62px;
+  font-size: 2em;
+}
+.footer {
+  clear: both;
 }
