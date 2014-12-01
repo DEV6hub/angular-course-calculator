@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../Styles/Menus.css">
+<script type="text/javascript">
+	function GetElementsByClassName(CLASS,NODE)
+	{
+		var startNode = NODE || document;
+		var AllTags = startNode.getElementsByTagName("*");
+		if (AllTags.length == 0) AllTags = startNode.all; //for IE
+		var Elems = new Array();
+		var re = new RegExp("(^|\\s+)" + CLASS + "(\\s+|$)");
+		for (var i=0; i<AllTags.length; i++)
+		{
+			if (re.test(AllTags[i].className)) Elems[Elems.length] = AllTags[i];
+		}
+		return Elems;
+	}
+	
+	function init()
+	{
+		var MenuOptions = GetElementsByClassName("MenuOptions");
+		alert(MenuOptions.length);
+	}
+</script>
+<title>Menus</title>
+</head>
+<body onload="init();">
+	<div style="position:absolute; z-index:1000; left:0px; top:0px;" id="Menus">
+		<div class="Menu" id="Menu1">
+			<div class="MenuHead">Beatles</div>
+			<div class="MenuOptions">
+				<a href="http://www.paulmccartney.com">Paul</a>
+				<a href="http://www.johnlennon.com">John</a>
+				<a href="http://www.georgeharrison.com">George</a>
+				<a href="http://www.ringostarr.com">Ringo</a>
+			</div>
+		</div>
+		<div class="Menu" id="Menu2">
+			<div class="MenuHead">Rolling Stones</div>
+			<div class="MenuOptions">
+				<a href="http://www.mickjagger.com">Mick</a>
+				<a href="http://www.keithrichards.com">Keith</a>
+			</div>
+		</div>
+	</div>
+	<div id="divBody">Page</div>
+</body>
+</html>

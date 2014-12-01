@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit05 Services</title>
+	<link rel="stylesheet" href="../lib/bootstrap-3.0.2/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../assets/css/course.css"/>
+</head>
+<body ng-app="MyApp">
+
+	<div ng-controller="MyCtrl">
+		<input type="text" ng-model="model.user.firstName"/>
+	</div>
+
+	<hr/>
+
+	<div ng-controller="OtherCtrl">
+		{{ model.user.firstName }}
+	</div>
+
+	<script src="../lib/angular-1.2/angular.js"></script>
+	<script src="demo-5a.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ssn Cleaner</title>
+<script type="text/javascript">
+var reSSN = /^(\d{3})[\- ]?(\d{2})[\- ]?(\d{4})$/;
+
+function cleanSsn(ssn){
+	if (reSSN.test(ssn)) {
+		var cleanedSsn = ssn.replace(reSSN, "$1-$2-$3");
+		return cleanedSsn;
+	} else {
+		alert("INVALID SSN");
+		return ssn;
+	}
+}
+</script>
+</head>
+<body>
+	<form onsubmit="return false;">
+		<input type="text" name="ssn" size="20">
+		<input type="button" value="Clean SSN" 
+			onclick="this.form.ssn.value = cleanSsn(this.form.ssn.value);">
+	</form>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+<script type="text/javascript" src="FormValidation-challenge.js"></script>
+<script type="text/javascript">
+
+function validate(form){
+	var firstName = form.FirstName.value;
+	var midInitial = form.MidInit.value;
+	var lastName = form.LastName.value;
+	var city = form.City.value;
+	var state = form.State.value;
+	var zipCode = form.Zip.value;
+	var email = form.Email.value;
+	var userName = form.Username.value;
+	var password1 = form.Password1.value;
+	var password2 = form.Password2.value;
+	var errors = [];
+
+	if (!reProperName.test(firstName)) {
+		errors[errors.length] = "You must enter a valid first name.";
+	}
+
+	if (!reInitial.test(midInitial)) {
+		errors[errors.length] = "You must enter a one-letter middle initial.";
+	}
+
+	if (!reProperName.test(lastName)) {
+		errors[errors.length] = "You must enter a valid last name.";
+	}
+
+	if (!reProperName.test(city)) {
+		errors[errors.length] = "You must enter a valid city.";
+	}
+
+	if (!reState.test(state)) {
+		errors[errors.length] = "You must enter a valid state.";
+	}
+
+	if (!rePostalUS.test(zipCode)
+			&& !rePostalCA.test(zipCode)
+			&& !rePostalUK.test(zipCode))
+	{
+		errors[errors.length] = "You must enter a valid postal code.";
+	}
+
+	if (!reUsername.test(userName)) {
+		errors[errors.length] = "You must enter a valid username.";
+	}
+
+	if (!reEmail.test(email)) {
+		errors[errors.length] = "You must enter a valid email address.";
+	}
+
+	if (!rePassword.test(password1)) {
+		errors[errors.length] = "You must enter a valid password.";
+	} else if (compareValues(password1,password2) !== 0) {
+		errors[errors.length] = "Passwords don't match.";
+	}
+
+	if (!checkRadioArray(form.Country)) {
+		errors[errors.length] = "You must select a country.";
+	}
+
+	if ( !checkCheckBox(form.Terms) ) {
+		errors[errors.length] = "You must agree to the terms.";
+	}
+
+	if (errors.length > 0) {
+		reportErrors(errors);
+		return false;
+	}
+
+	return true;
+}
+
+function reportErrors(errors){
+	var msg = "There were some problems...\n";
+	for (var i = 0; i<errors.length; i++) {
+		var numError = i + 1;
+		msg += "\n" + numError + ". " + errors[i];
+	}
+	alert(msg);
+}
+</script>
+</head>
+<body>
+<h1>Registration Form</h1>
+<form method="post" action="Process.html" onsubmit="return validate(this);">
+<table border="0" cellspacing="2" cellpadding="2">
+<tr>
+	<td>First Name:</td>
+	<td><input type="text" name="FirstName" size="20"></td>
+</tr>
+<tr>
+	<td>Middle Initial:</td>
+	<td><input type="text" name="MidInit" size="2"></td>
+</tr>
+<tr>
+	<td> Last Name:</td>
+	<td><input type="text" name="LastName" size="20"></td>
+</tr>
+<tr>
+	<td>City: </td>
+	<td><input type="text" name="City" size="20"></td>
+</tr>
+<tr>
+	<td>State: </td>
+	<td><input type="text" name="State" size="2"></td>
+</tr>
+<tr valign="top">
+	<td>Country:</td>
+	<td>
+		<input type="radio" name="Country" value="USA"> United States<br>
+		<input type="radio" name="Country" value="CA"> Canada<br>
+		<input type="radio" name="Country" value="Other"> Other
+	</td>
+</tr>
+<tr>
+	<td>Zip: </td>
+	<td><input type="text" name="Zip" size="10"></td>
+</tr>
+<tr>
+	<td>Email: </td>
+	<td><input type="text" name="Email" size="30"></td>
+</tr>
+<tr>
+	<td>Username:</td>
+	<td><input type="text" name="Username" size="10"></td>
+</tr>
+<tr>
+	<td>Password:</td>
+	<td><input type="password" name="Password1" size="10"></td>
+</tr>
+<tr>
+	<td>Repeat Password: </td>
+	<td><input type="password" name="Password2" size="10"></td>
+</tr>
+<tr valign="top">
+	<td>Comments: </td>
+	<td>
+		<textarea name="Comments" cols="30" rows="3" wrap="virtual"
+		onblur="checkTextArea(this.value, 100);"></textarea>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<input type="checkbox" name="Terms" value="checkbox">
+		I agree to the site terms.
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="center">
+		<input name="submit" type="submit" value="Submit">
+		<input name="reset" type="reset" value="Reset Form">
+	</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

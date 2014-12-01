@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sum All Numbers, 3rd try</title>
+<script type="text/javascript">
+	function sumValues() {
+		var sum = 0;
+		for (var i = 0; i < arguments.length; i++) {
+			sum += arguments[i];
+		}
+		return sum;
+	}
+
+	var result1 = sumValues(3, 5, 6, 2, 7);
+	var result2 = sumValues(12, 20);
+
+	alert(result1);
+	alert(result2);
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>
+</body>
+</html>

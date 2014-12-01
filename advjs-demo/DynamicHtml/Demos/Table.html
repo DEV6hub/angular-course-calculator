@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manipulating Tables</title>
+<link href="table.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+function addRow(tableId, cells){
+	var tableElem = document.getElementById(tableId);
+	var newRow = tableElem.insertRow(tableElem.rows.length);
+	var newCell;
+	for (var i = 0; i < cells.length; i++) {
+		newCell = newRow.insertCell(newRow.cells.length);
+		newCell.innerHTML = cells[i];
+	}
+	return newRow;
+}
+
+function deleteRow(tableId, rowNumber){
+	var tableElem = document.getElementById(tableId);
+	if (rowNumber > 0 && rowNumber < tableElem.rows.length) {
+		tableElem.deleteRow(rowNumber);
+	} else {
+		alert("Failed");
+	}
+}
+
+observeEvent(window,"load",function() {
+	var btnAdd = document.getElementById("btnAdd");
+	var btnDelete = document.getElementById("btnDelete");
+	observeEvent(btnAdd,"click",function() {
+		var cells=[btnAdd.form.FirstName.value,btnAdd.form.LastName.value];
+		addRow('tblPeople', cells);
+	});
+	observeEvent(btnDelete,"click",function() {
+		deleteRow('tblPeople', btnDelete.form.RowNum.value)
+	});
+});
+</script>
+</head>
+<body>
+<table id="tblPeople">
+<tr>
+	<th>First Name</th>
+	<th>Last Name</th>
+</tr>
+</table>
+<hr>
+<form name="formName">
+	<label for="FirstName">First Name:</label>
+	<input type="text" name="FirstName"><br>
+	<label for="LastName">Last Name:</label>
+	<input type="text" name="LastName"><br>
+	<input type="button" id="btnAdd" value="Add Name">
+	<hr>
+	<label for="RowNum">Remove Row:</label>
+	<input type="text" size="1" name="RowNum">
+	<input type="button" id="btnDelete" value="Delete Row">
+</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var colors = [];
+	colors["red"] = "#f00";
+	colors["green"] = "#060";
+	colors["blue"] = "#00f";
+	colors["yellow"] = "#ff0";
+	colors["orange"] = "#0ff";
+	
+	function deleteItem() {
+		delete colors["blue"];
+		showArray();
+		revealArray();
+	}
+	
+	function setToNull() {
+		colors["blue"] = null;
+		showArray();
+		revealArray();
+	}
+	
+	function showArray() {
+		var output = document.getElementById("colors");
+		var strOutput = "<ol>";
+		for (var i in colors) {
+			strOutput += "<li style='color:" + colors[i] + ";'>" + i + "</li>";
+		}
+		strOutput += "</ol>";
+		output.innerHTML=strOutput;
+	}
+	
+	function revealArray() {
+		var colorsCode = document.getElementById("colors-code");
+		var strOutput = "&lt;ol&gt;";
+		for (var i in colors) {
+			strOutput+="\n\t&lt;li style='color:" + colors[i] + ";'&gt;" + i + "&lt;/li&gt;";
+		}
+		strOutput += "\n&lt;/ol&gt;";	
+		colorsCode.innerHTML=strOutput;
+	}
+</script>
+<title>Delete vs. Setting to NULL</title>
+</head>
+<body onload="showArray();revealArray();">
+<button id="set-to-null" onclick="setToNull();">Set Blue to Null</button>
+<button id="del" onclick="deleteItem();">Delete Blue</button>
+<output id="colors"></output>
+<pre id="colors-code"></pre>
+</body>
+</html>

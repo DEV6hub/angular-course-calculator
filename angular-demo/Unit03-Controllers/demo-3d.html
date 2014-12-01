@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit03 Controllers</title>
+	<link rel="stylesheet" href="../lib/bootstrap-3.0.2/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../assets/css/course.css"/>
+</head>
+<body ng-app="MyApp">
+	<div ng-controller="AppCtrl">
+		<h3>AppCtrl</h3>
+		<label>motorcycle:</label> {{motorcycle}}
+		<br />
+		<label>model.motorcycle:</label> {{model.motorcycle}}
+		<hr />
+        
+        {{ model.baz }}
+		<div ng-controller="ChildCtrl">
+			<h3>ChildCtrl</h3>
+			<label>motorcycle:</label> {{motorcycle}}
+			<br />
+			<label>model.motorcycle:</label> {{model.motorcycle}}
+			<hr />
+            
+            {{ model.world }}
+            {{ model.baz }}
+			<div ng-controller="GrandChildCtrl">
+				<h3>GrandChildCtrl</h3>
+				<label>motorcycle:</label> {{motorcycle}}
+				<br />
+				<label>model.motorcycle:</label> {{model.motorcycle}}
+			</div>
+		</div>
+	</div>
+
+	<script src="../lib/angular-1.2/angular.js"></script>
+	<script src="demo-3d.js"></script>
+</body>
+</html>

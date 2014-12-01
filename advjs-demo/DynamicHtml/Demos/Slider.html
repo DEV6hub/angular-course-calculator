@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Slider</title>
+<link href="slider.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	var timer, timesUp;
+	function resetTimer() {
+		var slider = document.getElementById("divSlider");
+		timesUp = true;
+		slider.style.width = "0px";
+		clearInterval(timer);
+	}
+	
+	function decrementTimer() {
+		var slider = document.getElementById("divSlider");
+		var curWidth = parseInt( getCurrentStyle(slider,"width") );
+		timesUp = false;
+		if (curWidth < 200) {
+			slider.style.width = curWidth + 2 + "px";
+		} else {
+			alert("Time's up!");
+			resetTimer();
+		}
+	}
+
+	observeEvent(window,"load",function() {
+		var btnStart = document.getElementById("btnStart");
+		resetTimer();
+		observeEvent(btnStart,"click",function() {
+			timer = setInterval(decrementTimer, 100);
+		});
+	});
+</script>
+</head>
+<body>
+<div id="divSliderBG">
+	<div id="divSlider"></div>
+</div>
+<button id="btnStart">Start Timer</button>
+</body>
+</html>

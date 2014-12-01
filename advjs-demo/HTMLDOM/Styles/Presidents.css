@@ -1,0 +1,17 @@
+.PresTitle {
+	font-size:12pt;
+	background-color:darkblue;
+	border:1px solid darkblue;
+	color:white;
+	margin:10px 0px 0px 0px;
+	width:300px;
+}
+
+.PresBody {
+	font-size:10pt;
+	background-color:white;
+	color:darkblue;
+	border:1px solid darkblue;
+	margin:0px;
+	width:300px;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Events</title>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+observeEvent(window,"load",init);
+function init() {
+	var addButton = document.getElementById("addButton");
+	var subtractButton = document.getElementById("subtractButton");
+	observeEvent(addButton,"click",addNumbers);
+	observeEvent(subtractButton,"click",subtractNumbers);
+	observeEvent(addButton,"click",incrementProblems);
+	observeEvent(subtractButton,"click",incrementProblems);
+}
+
+function addNumbers() {
+	var mathform = document.getElementById("mathform");
+	var num1 = mathform.num1.value;
+	var num2 = mathform.num2.value;
+	var result = Number(num1) + Number(num2);
+	mathform.result.value = result;
+}
+
+function subtractNumbers() {
+	var mathform = document.getElementById("mathform");
+	var num1 = mathform.num1.value;
+	var num2 = mathform.num2.value;
+	var result = num1 - num2;
+	mathform.result.value = result;
+}
+
+var numProbs=0;
+function incrementProblems() {
+	numProbs++;
+	document.getElementById("numProblems").innerHTML = numProbs;
+}
+</script>
+</head>
+<body>
+	<form onsubmit="return false" id="mathform">
+		Number: <input type="text" name="num1" value="5"/><br/>
+		Number: <input type="text" name="num2" value="5"/><br/>
+		<input type="button" id="addButton" value="+"/>
+		<input type="button" id="subtractButton" value="-"/><br/><br/>
+		Result: <input type="text" name="result" value="0"/><br/>
+	</form>
+	<div>
+		Number of Problems: <span id="numProblems">0</span>
+	</div>
+</body>
+</html>

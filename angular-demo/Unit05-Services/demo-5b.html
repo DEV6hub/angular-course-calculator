@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit05 Services</title>
+	<link rel="stylesheet" href="../lib/bootstrap-3.0.2/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../assets/css/course.css"/>
+</head>
+<body ng-app="MyApp">
+
+	<div ng-controller="MyCtrl">
+		<button class="btn btn-success" ng-click="getUsers()">Get Users</button>
+
+		<hr/>
+		
+		<table class="table-bordered">
+			<tr ng-repeat="user in model.users">
+				<td>{{ user.firstName }}</td>
+				<td>{{ user.lastName }}</td>
+				<td>{{ user.email }}</td>
+			</tr>
+		</table>
+
+	</div>
+
+	<script src="../lib/angular-1.2/angular.js"></script>
+	<script src="demo-5b.js"></script>
+</body>
+</html>

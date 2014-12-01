@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<script type="text/javascript">
+var reEmail = /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/;
+var rePassword = /^[A-Za-z\d]{6,10}$/;
+
+function validate(form){
+	var email = form.Email.value;
+	var password = form.Password.value;
+	var errors = [];
+		
+	if (!reEmail.test(email)) {
+		errors[errors.length] = "You must enter a valid email address.";
+	}
+	
+	if (!rePassword.test(password)) {
+		errors[errors.length] = "You must enter a valid password.";
+	}
+	
+	if (errors.length > 0) {
+		reportErrors(errors);
+		return false;
+	}
+	
+	return true;
+}
+
+function reportErrors(errors){
+	var msg = "There were some problems...\n";
+	for (var i = 0; i<errors.length; i++) {
+		var numError = i + 1;
+		msg += "\n" + numError + ". " + errors[i];
+	}
+	alert(msg);
+}
+</script>
+</head>
+<body>
+<h1>Login Form</h1>
+<form method="post" action="Process.html" onsubmit="return validate(this);">
+		
+	Email: <input type="text" name="Email" size="25"><br/>
+	Password: <input type="password" name="Password" size="10"><br/>
+	*Password must be between 6 and 10 characters and 
+	can only contain letters and digits.<br/>
+	
+	<input type="submit" value="Submit">
+	<input type="reset" value="Reset Form">
+	</p>
+</form>
+</body>
+</html>

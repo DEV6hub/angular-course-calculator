@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Phone Cleaner</title>
+<script type="text/javascript">
+var rePhone = /^\(?([2-9]\d\d)\)?[\-\. ]?([2-9]\d\d)[\-\. ]?(\d{4})$/;
+
+function cleanPhone(phone){
+	if (rePhone.test(phone)) {
+		var cleanedPhone = phone.replace(rePhone, "($1) $2-$3");
+		return cleanedPhone;
+	} else {
+		alert("INVALID PHONE");
+		return phone;
+	}
+}
+
+</script>
+</head>
+<body>
+	<form onsubmit="return false;">
+		<input type="text" name="Phone" size="20">
+		<input type="button" value="Convert Phone" 
+			onclick="this.form.Phone.value = cleanPhone(this.form.Phone.value);">
+	</form>
+</body>
+</html>

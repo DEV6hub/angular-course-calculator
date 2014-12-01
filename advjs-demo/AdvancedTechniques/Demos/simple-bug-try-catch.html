@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple Bug - try/catch</title>
+<script type="text/javascript">
+window.onerror = function (message, url, lineNo) {
+	alert(
+		'Error: ' + message + 
+		'\n Url: ' + url + 
+		'\n Line Number: ' + lineNo);
+	return true;			
+}
+
+function getInput() {
+	try {
+		var name = window.prompt('Type your name', '');
+		alert('Your name has ' + name.length + ' letters.');			
+	} catch (error) {
+		alert('The error was: ' + error.name + 
+		'\n The error message was: ' + error.message);
+	} finally {
+		//do cleanup
+	}
+}
+getInput();
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>	
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Math Quiz</title>
+<link href="MathQuiz.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript" src="questions.js"></script>
+<script type="text/javascript">	
+	var timer, timesUp, timePerQuestion=10;
+	observeEvent(window,"load",init);
+	
+	function init() {
+		var category = document.getElementById("category");
+		var question = document.getElementById("question");
+		var btnCheck = document.getElementById("btnCheck");
+		var timeLeft = document.getElementById("timeLeft");
+		observeEvent(category,"change",function() {
+			selChanged(category,categories,question);
+			resetTimer(timePerQuestion);
+		});
+		observeEvent(question,"change",function() {
+			questionChanged();
+		});
+		observeEvent(btnCheck,"click",function() {
+			checkAnswer();
+		});
+		observeEvent(timeLeft,"focus",function() {
+			timeLeft.blur();
+		});
+		selChanged(category,categories,question);
+		resetTimer(timePerQuestion);
+	}
+
+	function selChanged(sel,data,dependentSel) {
+		var selection = sel.options[sel.selectedIndex].value;
+		var arrOptions = data[selection];
+		var opt;
+		dependentSel.options.length = 1;
+		for (var i in arrOptions) {
+			opt = new Option(arrOptions[i].q,arrOptions[i].a);
+			appendOptionToSelect(dependentSel,opt);
+		}
+	}
+	
+	function resetTimer(seconds) {
+		var timerRow = document.getElementById("timerRow");
+		timerRow.style.display="none";
+		document.getElementById("timeLeft").value = seconds;
+		clearInterval(timer);
+	}
+	
+	function decrementTimer() {
+		var timeLeft = document.getElementById("timeLeft");
+		timeLeft.value--;
+		if (timeLeft.value < 0) {
+			resetTimer(timePerQuestion);
+			msg("Time's up!  The answer is " + getAnswer() + ".");
+			removeOption();
+		}
+	}
+
+	function checkAnswer() {
+		var userAnswer = document.getElementById("answer").value;
+		var correctAnswer = getAnswer();
+		
+		if (userAnswer === correctAnswer) {
+			msg("Right! The answer is " + correctAnswer + ".");
+		} else {
+			msg("Sorry. The correct answer is " + correctAnswer + ".");
+		}
+		removeOption();
+		questionChanged();
+	}
+	
+	function getAnswer() {
+		var i = document.Quiz.question.selectedIndex;
+		var answer = document.Quiz.question[i].value;
+		return answer;
+	}
+	
+	function removeOption() {
+		var category = document.Quiz.category;
+		var question = document.Quiz.question;
+		question.remove(question.selectedIndex);
+		if(question.options.length == 1) {
+			category.remove(category.selectedIndex);
+			if (category.options.length == 0) {
+				endQuiz();
+			} else {
+				selChanged(category,categories,question);
+			}
+		}
+		resetTimer(timePerQuestion);
+	}
+	
+	function questionChanged() {
+		document.Quiz.answer.value="";
+		var timerRow;
+		if (document.Quiz.question.selectedIndex === 0) {
+			document.Quiz.btnCheck.disabled = true;
+			document.Quiz.answer.disabled = true;
+			resetTimer(timePerQuestion);
+		} else {
+			document.Quiz.btnCheck.disabled = false;
+			document.Quiz.answer.disabled = false;
+			document.Quiz.answer.focus();
+			timer = setInterval(decrementTimer,1000);
+			timerRow = document.getElementById("timerRow");
+			timerRow.style.display="";
+		}
+	}
+	
+	function endQuiz() {
+		var category = document.Quiz.category;
+		var question = document.Quiz.question;
+		resetTimer(timePerQuestion);
+		alert("Thanks for playing! The quiz will now reload.");
+		appendOptionToSelect(category,new Option("Addition","addition"));
+		appendOptionToSelect(category,new Option("Subtraction","subtraction"));
+		appendOptionToSelect(category,new Option("Multiplication","multiplication"));
+		appendOptionToSelect(category,new Option("Division","division"));
+		selChanged(category,categories,question);
+		resetTimer(timePerQuestion);
+	}
+	
+	function msg(text) {
+		document.getElementById("msg").innerHTML=text;	
+	}
+</script>
+</head>
+<body>
+<form name="Quiz" onsubmit="return false;">
+<table>
+<tr>
+	<td>Category:</td>
+	<td>
+		<select name="category" id="category">
+			<option value="addition">Addition</option>
+			<option value="subtraction">Subtraction</option>
+			<option value="multiplication">Multiplication</option>
+			<option value="division">Division</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>Question:</td>
+	<td>
+		<select name="question" id="question">
+			<option value="0">--Please Choose--</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>Answer:</td>
+	<td>
+		<input type="text" name="answer" id="answer" 
+			size="2" disabled="disabled">
+		<input type="button" name="btnCheck" id="btnCheck" 
+			value="Check Answer" disabled="disabled">
+	</td>
+</tr>
+<tr id="timerRow">
+	<td>Timer:</td>
+	<td><input type="text" name="timeLeft" id="timeLeft" size="2"> seconds left</td>
+</tr>
+<tr>
+	<td id="msg" colspan="2">Good luck!</td></tr>
+</tr>
+</table>
+</form>
+</body>
+</html>

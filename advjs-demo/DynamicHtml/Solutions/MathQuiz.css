@@ -1,0 +1,33 @@
+table {
+	margin:auto;
+	border:1px solid #000066;	
+	width:300px;
+}
+td, th {
+	border:1px solid #000066;	
+	padding:4px;
+}
+#timeLeft, #msg {
+	text-align:center;
+}
+#msg {
+	background-color:#eeeeee;
+	font-weight:bold;
+}
+
+#divSlider {
+	height:20px;
+	width:10px;
+	background-color:red;
+	position:relative;
+	left:1px;
+}
+
+#divSliderBG {
+	height:20px;
+	width:200px;
+	padding:2px;
+	background-color:blue;
+	float:left;
+	margin-right:10px;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit04 Directives</title>
+	<link rel="stylesheet" href="../lib/bootstrap-3.0.2/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../assets/css/course.css"/>
+	<link rel="stylesheet" href="flights.css"/>
+</head>
+<body ng-app="MyApp">
+	<div ng-controller="AppCtrl">
+		<label>Traveller's name: </label>
+		<input class="form-control" ng-model="model.userName"></input>
+		<hr />
+		<flight ng-repeat="flight in model.flights" select="book(name)" name="{{flight.name}}" flight="flight"></flight>
+	</div>
+	<script src="../lib/angular-1.2/angular.js"></script>
+	<script src="demo-4e.js"></script>
+</body>
+</html>

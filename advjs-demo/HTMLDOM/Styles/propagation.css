@@ -1,0 +1,30 @@
+#outer, #inner {
+	border:1px dotted #000;
+	font-size:large;
+	font-weight:bold;
+}
+
+#outer {
+	background-color:#aac;	
+	padding:5px;
+}
+
+#inner {
+	padding:20px;
+	margin:20px;
+	background-color:#eef;	
+}
+
+td, tr {
+	border:1px dotted #000;
+	font-size:x-large;
+	cursor:pointer;
+}
+
+table {
+	margin:auto;	
+}
+
+caption {
+	font-weight:bold;	
+}

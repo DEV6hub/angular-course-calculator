@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Objects</title>
+<script type="text/javascript">
+	//constructor call
+	var employee = new Object();
+	employee.name = "Homer Simpson";
+	employee.badgeNumber = 35739;
+	
+	//literal syntax
+	var boss = {
+		"name" : "Montgomery Burns",
+		"badgeNumber" : 1
+	};
+	
+	employee.reportsTo = boss;
+	alert(employee.name + " reports to " + employee.reportsTo.name);
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>
+</body>
+</html>

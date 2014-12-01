@@ -1,0 +1,14 @@
+/* flight booking example */
+
+.flight-overview {
+	text-align: center;
+	margin: 0 auto;
+}
+
+label {
+	color: #FF4F4F;
+}
+
+body {
+	background-color: #FAFAFA;
+}

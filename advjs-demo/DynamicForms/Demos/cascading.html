@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cascading Dropdowns</title>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	var statesPerCountry = {
+		"usa" : ["New York", "Florida", "Iowa", "California"],
+		"canada" : ["Ontario", "Quebec", "Manitoba", "Yukon"]
+	};
+	
+	function countryChanged() {
+		var sel = document.getElementById("country");
+		var country = sel.options[sel.selectedIndex].value;
+		updateStateList(country);
+	}
+	
+	function updateStateList(country) {
+		var states = statesPerCountry[ country ];
+		var list = document.getElementById("state");
+		var opt;
+		removeAllChildren(list);
+		for (var i in states) {
+			opt = new Option(states[i]);
+			appendOptionToSelect(list,opt);
+		}
+	}
+	
+	observeEvent(window,"load",function() {
+		var country = document.getElementById("country");
+		observeEvent(country,"change",countryChanged);
+	});
+</script>
+</head>
+<body>
+	<h1>Cascading Dropdowns</h1>
+	<form action="">
+		<label for="country">Country:</label>
+		<select id="country" name="country">
+			<option value="">Please select</option>
+			<option value="usa">USA</option>
+			<option value="canada">Canada</option>
+		</select>
+		<label for="state">State/Province:</label>
+		<select id="state"></select>
+	</form>
+</body>
+</html>

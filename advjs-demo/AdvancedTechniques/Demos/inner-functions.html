@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inner Functions</title>
+<script type="text/javascript">
+	var values = [5, 2, 11, -7, 1];
+		
+	function combineAll(nums, initialValue, operator) {
+		var runningResult = initialValue;
+		for (var i=0; i < nums.length; i++) {
+			runningResult = calculate(nums[i]); 
+		}
+		return runningResult;
+		
+		function calculate(num) {
+			switch (operator.toLowerCase()) {
+				case "+" :
+					return runningResult + num;
+				case "x" :
+					return runningResult * num;
+				case "*" :
+					return runningResult * num;
+				case "a" :
+					return runningResult + ", " + num;
+			}
+		}
+	}
+		
+	var sum = combineAll(values, 0, "+");
+	var product = combineAll(values, 1, "x");
+	var list = combineAll(values, 1, "a");
+			
+	alert("Sum: " + sum);
+	alert("Product: " + product);
+	alert("Number List: " + list);
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>	
+</body>
+</html>

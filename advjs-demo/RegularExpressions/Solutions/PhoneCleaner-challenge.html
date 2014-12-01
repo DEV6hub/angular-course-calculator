@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Phone Checker</title>
+<script type="text/javascript">
+var rePhone = /^\(?([2-9]\d\d)\)?[\-\. ]?([2-9]\d\d)[\-\. ]?(\d{4})$/;
+
+function cleanPhone(phone){
+	if (rePhone.test(phone)) {
+		var cleanedPhone = phone.replace(rePhone, "($1) $2-$3");
+		return cleanedPhone;
+	} else {
+		alert("INVALID PHONE");
+		return phone;
+	}
+}
+
+function convertPhone(phone){
+	var convertedPhone;
+	convertedPhone = phone.replace(/[^A-Za-z\d]/g, "");
+	convertedPhone = convertedPhone.replace(/[ABC]/gi, "2");
+	convertedPhone = convertedPhone.replace(/[DEF]/gi, "3");
+	convertedPhone = convertedPhone.replace(/[GHI]/gi, "4");
+	convertedPhone = convertedPhone.replace(/[JKL]/gi, "5");
+	convertedPhone = convertedPhone.replace(/[MNO]/gi, "6");
+	convertedPhone = convertedPhone.replace(/[PQRS]/gi, "7");
+	convertedPhone = convertedPhone.replace(/[TUV]/gi, "8");
+	convertedPhone = convertedPhone.replace(/[WXYZ]/gi, "9");
+	return cleanPhone(convertedPhone.substr(0, 10));
+}
+</script>
+</head>
+<body>
+	<form onsubmit="return false;">
+		<input type="text" name="Phone" size="20">
+		<input type="button" value="Convert Phone" 
+			onclick="this.form.Phone.value = convertPhone(this.form.Phone.value);">
+	</form>
+</body>
+</html>

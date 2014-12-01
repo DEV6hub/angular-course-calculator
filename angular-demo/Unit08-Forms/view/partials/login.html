@@ -1,0 +1,49 @@
+<div>
+	Please log in:
+
+	<hr/>
+
+	<form name="loginForm" novalidate>
+
+		<div class="form-group">
+			<label
+				for="email"
+				ng-class="{'invalidField' : loginForm.email.$invalid}">
+				Email address:
+			</label>
+			<input
+				type="email"
+				class="form-control"
+				name="email"
+				id="email"
+				placeholder="Enter email"
+				ng-model="model.email"
+				required/>
+		</div>
+
+		<div class="form-group">
+			<label
+				for="password"
+				ng-class="{'invalidField' : loginForm.password.$invalid}">
+				Password:
+			</label>
+			<input
+				type="password"
+				class="form-control"
+				name="password"
+				id="password"
+				placeholder="Enter password"
+				ng-model="model.password"
+				ng-minlength="4"
+				required/>
+
+			<p class="alert alert-warning"
+				ng-show="loginForm.password.$error.minlength || loginForm.password.$invalid">
+				Password is at least four characters.
+			</p>
+		</div>
+
+		<button class="btn btn-info" ng-click="login(loginForm)">Log In</button>
+		<!--Try this: <button class="btn btn-info" ng-click="login(loginForm)" ng-disabled="loginForm.$invalid" >Log In</button>-->
+	</form>
+</div>

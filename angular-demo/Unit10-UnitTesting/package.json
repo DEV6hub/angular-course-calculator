@@ -1,0 +1,25 @@
+{
+	"name" : "Unit10-UnitTesting",
+	"version" : "0.0.1",
+	"description" : "Unit Testing for AngularJS.",
+	"main" : "",
+	"dependencies" : {
+		"karma" : "~0.10",
+		"karma-phantomjs-launcher": "~0.1"
+	},
+	"devDependencies" : {},
+	"scripts" : {
+		"test" : "echo \"Error: no test specified\" && exit 1"
+	},
+	"author" : "Oliver Merk",
+	"license" : "Apache",
+	"repository" : {
+		"type" : "git",
+		"url" : "NoRepo"
+	},
+	"keywords" : [
+		"AngularJS",
+		"Karma"
+	],
+	"readme" : "goway"
+}

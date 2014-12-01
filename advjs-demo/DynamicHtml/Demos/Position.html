@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Position</title>
+<link href="position.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">	
+	function moveH(elem, distance){
+		var curLeft = parseInt( getCurrentStyle(elem,"left") );
+		elem.style.left = (curLeft + distance) + "px";
+	}
+	
+	function moveV(elem, distance){
+		var curTop = parseInt( getCurrentStyle(elem,"top") );
+		elem.style.top = (curTop + distance) + "px";
+	}
+
+	observeEvent(window,"load",function() {
+		var btnLeft = document.getElementById("btnLeft");
+		var btnRight = document.getElementById("btnRight");
+		var btnUp = document.getElementById("btnUp");
+		var btnDown = document.getElementById("btnDown");
+		var block = document.getElementById("divBlock");
+		
+		observeEvent(btnLeft,"click",function() {
+			moveH(block,-10);
+		});
+		observeEvent(btnRight,"click",function() {
+			moveH(block,10);
+		});
+		observeEvent(btnUp,"click",function() {
+			moveV(block,-10);
+		});
+		observeEvent(btnDown,"click",function() {
+			moveV(block,10);
+		});
+	});
+</script>
+</head>
+<body>
+<div id="field">
+	<button id="btnLeft">Left</button>
+	<button id="btnRight">Right</button>
+	<button id="btnUp">Up</button>
+	<button id="btnDown">Down</button>
+	<div id="divBlock"></div>
+</div>
+</body>
+</html>

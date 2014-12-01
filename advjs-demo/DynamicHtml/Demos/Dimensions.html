@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dimensions</title>
+<link href="dimensions.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	function grow(elem){
+		var curWidth = parseInt( getCurrentStyle(elem,"width") );
+		var curHeight = parseInt( getCurrentStyle(elem,"height") );
+		elem.style.width = (curWidth * 1.5) + 'px';
+		elem.style.height = (curHeight * 1.5) + 'px';
+		showDimensions(elem);
+	}
+	
+	function shrink(elem){
+		var curWidth = parseInt( getCurrentStyle(elem,"width") );
+		var curHeight = parseInt( getCurrentStyle(elem,"height") );
+		elem.style.width = (curWidth / 1.5) + 'px';
+		elem.style.height = (curHeight / 1.5) + 'px';
+		showDimensions(elem);
+	}
+	
+	function showDimensions(elem) {
+		elem.innerHTML = "w: " + getCurrentStyle(elem,"width") + "<br>h: " + getCurrentStyle(elem,"height");
+	}
+
+	observeEvent(window,"load",function() {
+		var block = document.getElementById("divBlock");
+		observeEvent(block,"mouseover",function() {
+			grow(block);
+		})
+		observeEvent(block,"mouseout",function() {
+			shrink(block);
+		})
+		showDimensions(block);
+	});
+</script>
+</head>
+<body>
+<div id="divBlock"></div>
+</body>
+</html>

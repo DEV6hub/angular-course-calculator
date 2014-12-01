@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XMLHttpRequest</title>
+<script type="text/javascript">
+window.onload = function() {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET", "arrays.html", true);
+	xmlhttp.onreadystatechange = function() {
+		var headers;
+		var output = document.getElementById("headers");
+		var response = document.getElementById("response");
+		var temp = "";
+		if ( this.readyState > 2 && typeof headers == "undefined" ) {
+			headers = this.getAllResponseHeaders().split("\n");
+			temp = "<ol>";
+			for (var i in headers) {
+				if (headers[i].trim().length > 0) {
+					temp += "<li>" + headers[i] + "</li>";
+				}
+			}
+			temp += "</ol>";
+			
+			output.innerHTML=temp;
+			response.value=this.responseText;
+		}
+	}
+	xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<output id="headers"></output>
+<textarea id="response" cols="50" rows="20"></textarea>
+</body>
+</html>

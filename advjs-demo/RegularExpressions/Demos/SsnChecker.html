@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ssn Checker</title>
+<script type="text/javascript">
+var reSSN = /^[0-9]{3}[\- ]?[0-9]{2}[\- ]?[0-9]{4}$/;
+
+function checkSsn(ssn){
+	if (reSSN.test(ssn)) {
+		alert("VALID SSN");
+	} else {
+		alert("INVALID SSN");
+	}
+}
+</script>
+</head>
+<body>
+	<form onsubmit="return false;">
+		<input type="text" name="ssn" size="20">
+		<input type="button" value="Check" 
+			onclick="checkSsn(this.form.ssn.value);">
+	</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Functions as Arguments</title>
+<script type="text/javascript">
+	//let's create an array with 5 values
+	var values = [5, 2, 11, -7, 1];
+		
+	//this function simply adds the values of 'a' and 'b' and returns the sum
+	function add(a, b) {
+		return a+b;
+	}
+				
+	//this function simply multiplies the value of 'a' times 'b' and returns the result		
+	function multiply(a, b) {
+		return a*b;
+	}
+		
+	/* the 1st param passed to it is the numbers (in this case, the array of values)
+	 * the 2nd param passed to it is the initial Value (could be 0, 1, or whatever)
+	 * the 3rd param passed to it is the operation - which will actually be one of the functions declared above (add or subtract)
+	 */
+	function combineAll(nums, initialValue, operation) {
+		//let's initialize the local variable 'runningResult' with the initialValue passed to it
+		var runningResult = initialValue;
+		//loop the nums array passed in
+		for (var i=0; i < nums.length; i++) {
+			/* for each iteration, call the function (which can be add or multiply) passing the 2 params
+			 * on the first iteration, runningResult will be the initialValue; after that, it will be the value returned from operation(runningResult, nums[i])
+			 * nums[i] simply refers to the current number in the iteration; the 1st will be 5, then 2, and so on.
+			 */
+			runningResult = operation(runningResult, nums[i]); 
+		}
+		return runningResult;
+	}
+		
+	//notice the 3rd param passes the "add" function - you can pass a function into anoter function!
+	var sum = combineAll(values, 0, add);
+	//notice the 3rd param passes the "multiply" function - you can pass a function into anoter function!
+	var product = combineAll(values, 1, multiply);
+			
+	//should be 12: 5+2+11+(-7)+1
+	alert("Sum: " + sum);
+	
+	//should be -770: 5x2x11x-7x1 
+	alert("Product: " + product);
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>	
+</body>
+</html>

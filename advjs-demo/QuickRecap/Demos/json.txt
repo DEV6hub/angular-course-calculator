@@ -1,0 +1,9 @@
+{
+	"1" : {
+		"name" : "Montgomery Burns"
+	},
+	"35739" : {
+		"name" : "Homer Simpson",
+		"reportsTo" : 1
+	}
+}

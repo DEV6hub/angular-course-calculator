@@ -1,0 +1,64 @@
+<div>
+	Please log in:
+
+	<hr/>
+
+	<form name="loginForm" novalidate>
+
+		<div class="form-group">
+			<label
+				for="email"
+				ng-class="{'invalidField' : loginForm.email.$invalid}">
+				Email address:
+			</label>
+			<input
+				type="email"
+				class="form-control"
+				name="email"
+				id="email"
+				placeholder="Enter email"
+				ng-model="model.email"
+				/>
+		</div>
+
+		<div class="form-group">
+			<label
+				for="password"
+				ng-class="{'invalidField' : loginForm.password.$invalid}">
+				Password:
+			</label>
+			<input
+				type="password"
+				class="form-control"
+				name="password"
+				id="password"
+				placeholder="Enter password"
+				ng-model="model.password"
+				/>
+
+			<p class="alert alert-warning"
+				ng-show="loginForm.password.$error.minlength || loginForm.password.$invalid">
+				Password is at least four characters.
+			</p>
+		</div>
+
+		<div class="instructionToggleWrapper">
+			<label for="instructionToggle"><input id="instructionToggle" type="checkbox" ng-model="model.checked">
+				<span ng-if="model.checked">Hide</span>
+				<span ng-if="!model.checked">Show</span>
+				instructions
+			</label>
+		</div>
+
+		<div class="check-element animate-show-hide" ng-show="model.checked" ng-init="model.checked=false">
+			<h3>Instructions</h3>
+			<ul>
+				<li>Enter your email address in the first field.</li>
+				<li>Enter your password in the second field.</li>
+				<li>Click the login button.</li>
+			</ul>
+		</div>
+
+		<button class="btn btn-info" ng-click="login()">Log In</button>
+	</form>
+</div>

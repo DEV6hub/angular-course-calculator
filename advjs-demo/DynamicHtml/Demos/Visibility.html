@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Showing and Hiding Elements with JavaScript</title>
+<link href="visibility.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+function changeVisibility(id){
+	var elem = document.getElementById(id);
+	var visibility;
+	if (elem.style.visibility=="hidden") {
+		elem.style.visibility = "visible";
+	} else {
+		elem.style.visibility = "hidden";
+	}
+	visibility = getCurrentStyle(elem,"visibility");
+	msg("The <em>visibility</em> of row <em>" + id + "</em> is <em>" + visibility + "</em>.");
+}
+
+function changeDisplay(id){
+	var elem = document.getElementById(id);
+	var display;
+	if (elem.style.display == "none") {
+		elem.style.display = "";
+	} else {
+		elem.style.display = "none";
+	}
+	display = getCurrentStyle(elem,"display");
+	msg("The <em>display</em> of row <em>" + id + "</em> is <em>" + display + "</em>.");
+}
+
+function msg(text) {
+	document.getElementById("msg").innerHTML = text;
+}
+</script>
+</head>
+<body>
+<h1>Hiding and Showing Elements</h1>
+<table>
+	<tr id="tr1"><td>Row 1</td></tr>
+	<tr id="tr2"><td>Row 2</td></tr>
+	<tr id="tr3"><td>Row 3</td></tr>
+	<tr id="tr4"><td>Row 4</td></tr>
+</table>
+<div id="msg">Style messages</div>
+<h2>visibility</h2>
+<button onclick="changeVisibility('tr1')">Row 1</button>
+<button onclick="changeVisibility('tr2')">Row 2</button>
+<button onclick="changeVisibility('tr3')">Row 3</button>
+<button onclick="changeVisibility('tr4')">Row 4</button>
+
+<h2>display</h2>
+<button onclick="changeDisplay('tr1')">Row 1</button>
+<button onclick="changeDisplay('tr2')">Row 2</button>
+<button onclick="changeDisplay('tr3')">Row 3</button>
+<button onclick="changeDisplay('tr4')">Row 4</button>
+</body>
+</html>

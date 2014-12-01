@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Regular Expression Tester</title>
+<style>
+	#container {width:800px; margin:auto;}
+	table {margin:auto;}
+	h1 { border-bottom:1px solid black;}
+	.big {font-family:Verdana; font-size: 14pt; font-weight:bold; color:darkblue; text-decoration:none; padding: 4px;}
+	.reg:hover {border: 2px solid red; padding: 2px; }
+	#display {font-size:16pt; font-family:Courier New;}
+	#msg {font-size:18pt; font-family:Arial, Helvetica, sans-serif; text-align:center;}
+	.match {background-color:#060;; color:#fff;}
+	.nomatch {background-color:#f00; color:#fff;}
+	.letsplay {background-color:#eee; color:#000;}
+	#run {display:block; width:100%; font-size:x-large;}
+	#patterns {text-align:center; font-weight:bold;}
+	table {border-spacing:10px;}
+</style>
+<script src="../../lib.js"></script>
+<script>
+function usePattern(pattern) {
+	var msg = document.getElementById("msg");
+	document.getElementById("Pattern").value=pattern;
+	document.getElementById("output").innerHTML=pattern;
+	msg.innerHTML="Let's Play";
+	msg.className="letsplay";
+}
+
+function runTest() {
+	var msg = document.getElementById("msg");
+	var pattern = document.getElementById("Pattern").value;
+	var textToSearch = document.getElementById("TextToSearch").value;
+	var re = new RegExp(pattern);
+	if (re.test(textToSearch)) {
+		msg.innerHTML = "Match!";
+		msg.className="match";
+	} else {
+		msg.innerHTML = "No Match!";
+		msg.className="nomatch";
+	}
+}
+
+function init() {
+	var btnEmail = document.getElementById("btnEmail");
+	var btnSSN = document.getElementById("btnSSN");
+	var btnPhone = document.getElementById("btnPhone");
+	var run = document.getElementById("run");
+	var reEmail = '^[a-zA-Z0-9_\\-\\.]+@[a-zA-Z0-9\\-]+\\.[a-zA-Z0-9\\-\\.]+$';
+	var reSSN = '^[0-9]{3}[\\- ]?[0-9]{2}[\\- ]?[0-9]{4}$';
+	var rePhone = '^\\(?[2-9][0-9]{2}\\)?[\\- ]?[0-9]{3}[\\- ]?[0-9]{4}$';
+	observeEvent(btnEmail,"click",function() {
+		usePattern(reEmail);	
+	});	
+	observeEvent(btnSSN,"click",function() {
+		usePattern(reSSN);	
+	});	
+	observeEvent(btnPhone,"click",function() {
+		usePattern(rePhone);	
+	});	
+	observeEvent(run,"click",runTest);	
+}
+
+observeEvent(window,"load",init);
+</script>
+</head>
+
+<body>
+<div id="container">
+	<h1>Regular Expression Tester</h1>
+	<table>
+	<tr>
+		<td colspan="2" id="msg" class="letsplay">Let's Play</td>
+	</tr>
+	<tr>
+		<td><span class="big">Text to search:</span></td>
+		<td><input type="text" id="TextToSearch" size="50" maxlength="50"></td>
+	</tr>
+	<tr>
+		<td><span class="big">Pattern:</span></td>
+		<td><input type="text" id="Pattern" size="50" maxlength="100"></td>
+	</tr>
+	<tr>
+		<td colspan="2" id="patterns">Try these patterns:
+			<button id="btnEmail">Email</button>
+			<button id="btnSSN">SSN</button>
+			<button id="btnPhone">Phone</button>
+		</td>
+	</tr>
+	<tr>
+	<td colspan="2">
+		  <button id="run">Run Test</button>
+	</td>
+	</tr>
+	
+	</table>
+<div id="display"><strong>PATTERN:</strong> <span id="output"></span></div>
+</div>
+</body>
+</html>

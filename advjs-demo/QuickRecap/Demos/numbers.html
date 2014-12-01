@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Types of Numbers</title>
+<script type="text/javascript">
+	var numbers = {};
+	numbers['age'] = 25; // simple, decimal, integer
+	numbers['price'] = 45.95; // floating point
+	numbers['letter'] = NaN; // not a number
+	
+	//SPECIAL CASES
+	// (note leading 0) integer in octal, 509 in decimal:
+	numbers['permissions'] = 0775; 
+	// integer in hexadecimal, 28 in decimal:
+	numbers['flags'] = 0x00ff; 
+	// floating point in scientific notation:
+	numbers['measurement'] = 5.397e-9; 
+</script>
+</head>
+<body>
+<script type="text/javascript">
+for (var i in numbers) {
+	document.write("<li><strong>" + i + ": </strong>");
+	document.write(numbers[i]);
+	document.write(" is a " + typeof numbers[i]);
+	document.write(".</li>");
+}
+</script>
+</body>
+</html>

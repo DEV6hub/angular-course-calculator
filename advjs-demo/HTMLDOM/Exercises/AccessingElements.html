@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Accessing Elements</title>
+<style type="text/css">
+	.off {
+		color:#ccc;
+	}
+	
+	.weekend {
+		background-color:#ff9;	
+	}
+	
+	.clickable {
+		cursor:pointer;
+		color:#06f;
+		text-decoration:underline;
+	}
+	
+	.highlight {
+		background-color:#006;
+		color:#fff;
+	}
+</style>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	function highlight(nodes) {
+		if (!nodes.length) { //make it an array
+			var nodes = [nodes];
+		}
+		
+		for (var i=0; i<nodes.length; i++) {
+			addClass(nodes[i],"highlight");
+		}
+	}
+	
+	function unhighlight(nodes) {
+		if (!nodes.length) { //make it an array
+			var nodes = [nodes];
+		}
+		
+		for (var i=0; i<nodes.length; i++) {
+			removeClass(nodes[i],"highlight");
+		}
+	}
+	
+	function unhighlightDays() {
+		var calendar = document.getElementById("calendar");
+		var days = calendar.getElementsByTagName("td");
+		unhighlight(days);
+	}
+	
+	function weekEndDays() {
+		var calendar = document.getElementById("calendar");
+		var weekEndDays = getElementsByClassName(calendar,"weekend");
+		unhighlightDays();
+		highlight(weekEndDays);
+		return weekEndDays;
+	}
+	
+	function offDays() {
+
+	}
+	
+	function allDays() {
+
+	}
+	
+	function firstDayOfMonth() {
+
+	}
+	
+	function weekDays() {
+		var weekDays;
+		if ( document.querySelectorAll ) {
+			//add code
+		} else {
+			//add code
+		}
+		unhighlightDays();
+		highlight(weekDays);
+		return weekDays;
+	}
+	
+	function weekDaysThisMonth() {
+
+	}
+</script>
+</head>
+<body>
+<table id="calendar">
+	<tr>
+		<th class="weekend">Sun</th>
+		<th>Mon</th>
+		<th>Tue</th>
+		<th>Wed</th>
+		<th>Thu</th>
+		<th>Fri</th>
+		<th class="weekend">Sat</th>
+	</tr>
+	<tr>
+		<td class="off weekend">30</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td class="weekend">6</td>
+	</tr>
+	<tr>
+		<td class="weekend">7</td>
+		<td>8</td>
+		<td>9</td>
+		<td>10</td>
+		<td>11</td>
+		<td>12</td>
+		<td class="weekend">13</td>
+	</tr>
+	<tr>
+		<td class="weekend">14</td>
+		<td>15</td>
+		<td>16</td>
+		<td>17</td>
+		<td>18</td>
+		<td>19</td>
+		<td class="weekend">20</td>
+	</tr>
+	<tr>
+		<td class="weekend">21</td>
+		<td>22</td>
+		<td>23</td>
+		<td>24</td>
+		<td>25</td>
+		<td>26</td>
+		<td class="weekend">27</td>
+	</tr>
+	<tr>
+		<td class="weekend">28</td>
+		<td>29</td>
+		<td>30</td>
+		<td>31</td>
+		<td class="off">1</td>
+		<td class="off">2</td>
+		<td class="off weekend">3</td>
+	</tr>
+</table>
+<ol>
+<ul>
+	<li class="clickable" onclick="allDays();">All Days</li>
+	<li class="clickable" onclick="weekEndDays();">Weekend Days</li>
+	<li class="clickable" onclick="offDays();">Days NOT in this Month</li>
+	<li class="clickable" onclick="weekDays();">Weekdays</li>
+	<li class="clickable" onclick="weekDaysThisMonth();">Weekdays This Month</li>
+	<li class="clickable" onclick="firstDayOfMonth();">First Day of This Month</li>
+</ul>
+</ol>
+</body>
+</html>

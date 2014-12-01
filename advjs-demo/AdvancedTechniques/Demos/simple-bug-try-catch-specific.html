@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple Bug - try/catch Specific</title>
+<script type="text/javascript">
+window.onerror = function (message, url, lineNo) {
+	alert(
+		'Error: ' + message + 
+		'\n Url: ' + url + 
+		'\n Line Number: ' + lineNo);
+	return true;			
+}
+
+function getInput() {
+	try {
+		var name = window.prompt('Type your name', '');
+		alert('Your name has ' + name.length + ' letters.');			
+	} catch (error) {
+		if (error.name == 'TypeError') {
+			alert('Please try again.');
+			getInput();
+		} else	{
+			throw error;
+		}
+	} finally {
+		//do cleanup
+	}
+}
+getInput();
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>	
+</body>
+</html>

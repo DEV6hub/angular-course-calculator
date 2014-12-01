@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit10 Unit Testing</title>
+	<link rel="stylesheet" href="../lib/bootstrap-3.0.2/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../assets/css/course.css"/>
+</head>
+<body ng-app="MyApp">
+
+	<div ng-controller="AppCtrl">
+		<h1>{{ model.text }}</h1>
+		<div ng-repeat="animal in model.animals">
+			{{ animal.name }}
+		</div>
+		<h6 simple>{{ model.now | formatdate }}</h6>
+		<h6 simple>Some animal: {{ model.animal.name }}</h6>
+	</div>
+
+	<script src="../lib/angular-1.2/angular.js"></script>
+	<script src="../lib/angular-1.2/angular-touch.js"></script>
+	<script src="demo-10a.js"></script>
+</body>
+</html>

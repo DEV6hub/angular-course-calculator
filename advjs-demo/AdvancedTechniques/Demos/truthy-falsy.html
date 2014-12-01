@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Truthy - Falsy</title>
+<script type="text/javascript">
+var truthies = [
+	"false",
+	"0",
+	-1,
+	"null",
+	"undefined",
+	"NaN",
+	5/0,
+	Infinity
+];
+
+var foo;
+var falsies = [
+	null,
+	undefined,
+	foo,
+	0,
+	NaN,
+	""
+];
+</script>
+</head>
+<body>
+<h1>Truthy - Falsy</h1>
+<h2>Truthy</h2>
+<ol>
+<script type="text/javascript">
+	for (var t=0; t<truthies.length; t++) {
+		document.write("<li>" + truthies[t] + " : " + Boolean(truthies[t]) + "</li>");
+	}
+</script>
+</ol>
+<h2>Falsy</h2>
+<ol>
+<script type="text/javascript">
+	for (var f=0; f<falsies.length; f++) {
+		document.write("<li>" + falsies[f] + " : " + Boolean(falsies[f]) + "</li>");
+	}
+</script>
+</ol>
+</body>
+</html>

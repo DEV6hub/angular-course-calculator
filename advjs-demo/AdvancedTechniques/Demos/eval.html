@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>eval is evil!</title>
+<script type="text/javascript">
+	function getProperty(objectName, propertyName) {
+		//expression will be: document.title
+		var expression = objectName + "." + propertyName;
+		//the eval() function evaluates the expression, so document.title gives us the title of the document
+		var propertyValue = eval(expression);
+		return propertyValue;
+	}
+	
+	var prop = "title"; //assume this was given by the user
+	alert(getProperty("document", prop)); 
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>	
+</body>
+</html>

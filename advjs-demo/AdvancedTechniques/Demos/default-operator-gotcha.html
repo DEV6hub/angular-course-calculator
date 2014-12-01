@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Default Operator Gotcha!</title>
+<script type="text/javascript">
+function calculatePrice(basePrice, tax) {
+	basePrice = basePrice || 0;
+	tax = tax || .1; //default tax is 10%
+	var price = (basePrice * (1 + tax)).toFixed(2);
+	alert("The price including tax is " + price); 
+}
+
+calculatePrice(100, 0); //no tax
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>
+</body>
+</html>

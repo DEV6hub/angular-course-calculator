@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Variable Scope</title>
+<script type="text/javascript">
+	var maxNum; //global
+	function prepare() {
+		var maxNum = 5; //local to function
+		//let's forget the "var" in the "for" declaration
+		for (i=0; i <= maxNum; ++i) { //no var, so i will be global
+			//do something
+		}
+	}
+	
+	prepare();
+	alert(maxNum); //undefined
+	alert(i); //6 (because we forget var)
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>	
+</body>
+</html>

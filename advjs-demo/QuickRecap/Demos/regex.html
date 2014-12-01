@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Regular Expressions</title>
+<script type="text/javascript">
+	var text = "Webucator";
+	var pattern = new RegExp('cat', 'g');
+	var samePattern = /cat/g; //using the literal syntax
+	alert( pattern.test( text ) );// shows 'true'
+	alert( samePattern.test( text ) );// shows 'true' again
+</script>
+</head>
+<body>
+</body>
+</html>

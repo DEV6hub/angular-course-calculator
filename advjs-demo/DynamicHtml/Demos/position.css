@@ -1,0 +1,15 @@
+#divBlock {
+	position:relative;
+	height:100px;
+	width:100px;
+	top:10px;
+	left:10px;
+	background-color:red;
+}
+
+#field {
+	width:400px;
+	height:400px;
+	margin:auto;
+	background-color:green;	
+}

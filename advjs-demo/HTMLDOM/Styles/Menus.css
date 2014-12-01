@@ -1,0 +1,48 @@
+.Menu 
+{
+	color:#000099;
+	padding:2px;
+	margin:1px;
+	font-weight:bold;
+	float:left;
+}
+
+.MenuHead 
+{
+	background-color:#ffffff;
+	border:1px solid #000099;
+	text-align:center;
+	cursor:pointer;
+	height:20px;
+	width:120px;
+}
+
+.MenuOptions 
+{
+	position:relative;
+	visibility:hidden;
+	z-index:100;
+	width:120px;
+}
+
+.MenuOptions a 
+{
+	width:120px;
+	display:block;
+	height:20px;
+	background-color:#ffffff;
+	border:1px solid #000099;
+	color:#0000ff;
+	text-decoration:none;
+	text-indent:2px;
+}
+
+#divBody 
+{
+	position:absolute;
+	top:50px;
+	clear:both; 
+	background-color:silver; 
+	width:95%;
+	z-index:10;
+}

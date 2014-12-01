@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function getElements()
+{
+	var elems = document.getElementsByTagName("li");
+	var msg="";
+	for (var i=0; i < elems.length; i++)
+	{
+		msg += elems[i].innerHTML + "\n";
+	}
+	alert(msg);
+}
+</script>
+<title>getElementsByTagName()</title>
+</head>
+
+<body onload="getElements();">
+<h1>Rockbands</h1>
+<h2>Beatles</h2>
+<ol>
+	<li>Paul</li>
+	<li>John</li>
+	<li>George</li>
+	<li>Ringo</li>
+</ol>
+<h2>Rolling Stones</h2>
+<ol>
+	<li>Mick</li>
+	<li>Keith</li>
+	<li>Charlie</li>
+	<li>Bill</li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,14 @@
+table {
+	border:1px solid #000066;	
+	width:400px;
+}
+
+td {
+	border:1px solid #000066;	
+	padding:4px;
+}
+
+#msg {
+	padding:10px;
+	font-weight:bold;
+}

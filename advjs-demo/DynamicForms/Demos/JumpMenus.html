@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jump Menus</title>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+function jumpMenu(e) {
+	var btn = getTarget(e);
+	var select = btn.form.state;
+	var i = select.selectedIndex;
+	var selection = select.options[i].value;
+	var url;
+	if (i === 0) {
+		alert("Please select a state.");
+	} else {
+		url = "http://www.50states.com/" + selection + ".htm";
+		location.href = url;
+	}
+}
+
+observeEvent(window,"load",function() {
+		var btn = document.getElementById("stbtn");
+		observeEvent(btn,"click",jumpMenu);
+	}
+);
+</script>
+</head>
+<body>
+<form action="">
+	<select name="state" id="state">
+		<option value="0">--SELECT A STATE--</option>
+		<option value="alabama">Alabama</option>
+		<option value="illinois">Illinois</option>
+		<option value="massachu">Massachusetts</option>
+		<option value="montana">Montana</option>
+		<option value="ncarolin">North Carolina</option>
+		<option value="wvirgini">West Virginia</option>
+	</select>
+	<input id="stbtn" name="stbtn" type="button" value="GO">
+</form>
+</body>
+</html>

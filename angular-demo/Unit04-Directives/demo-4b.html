@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit04 Directives</title>
+	<link rel="stylesheet" href="../lib/bootstrap-3.0.2/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../lib/font-awesome-4.0.3/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../assets/css/course.css"/>
+</head>
+<body ng-app="MyApp">
+
+	<div collapsed class="expandable-box">
+		<div class="header">Header</div>
+		<div class="content">
+			Lorem Ipsum Dolor Sit Amet<br>
+			Cogito ergo sum<br>
+		</div>
+	</div>
+
+	<div data-collapsed class="expandable-box">
+		<div class="header">A Different Header</div>
+		<div class="content">
+			Cogito ergo sum<br>
+			Lorem Ipsum Dolor Sit Amet<br>
+		</div>
+	</div>
+
+	<script src="../lib/angular-1.2/angular.js"></script>
+	<script src="../lib/underscore-1.5.2/underscore.js"></script>
+	<script src="demo-4b.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../Styles/propagation.css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	observeEvent(window,"load",function() {
+		var output = document.getElementById("output");
+		observeEvent(document.getElementById("outer"),"click",function() {
+			output.innerHTML+="<li>outer div clicked</li>";
+		}, false);
+		observeEvent(document.getElementById("inner"),"click",function() {
+			output.innerHTML+="<li>inner div clicked</li>";
+		}, false);
+	});
+</script>
+<title>Event Propagation: Bubbling Up</title>
+</head>
+<body>
+	<h1>Bubbling Up</h1>
+	<div id="outer">outer
+		<div id="inner">inner</div>
+	</div>
+	<ol id="output"></ol>
+</body>
+</html>

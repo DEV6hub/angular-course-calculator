@@ -1,0 +1,20 @@
+div {
+	position:relative;
+	height:100px;
+	width:100px;
+	font-size:xx-large;
+	text-align:center;
+	margin:auto;
+}
+
+#divRed {
+	border:20px solid red;
+	background-color:pink;
+}
+
+#divBlue {
+	top:-50px;
+	left:25px;
+	border:20px solid blue;
+	background-color:aqua;
+}

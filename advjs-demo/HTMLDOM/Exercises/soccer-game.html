@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../Styles/soccer-game.css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	var timer = null;
+	observeEvent(window,"load",function() {
+		observeEvent(document.getElementById("start"),"click",start,false);
+	});
+	
+	function miss() {
+		alert("Miss!");
+	}
+	
+	function hit(e) {
+		alert("Hit! Congrats!");
+		clearInterval(timer);
+	}
+	
+	function start() {
+		var ball = document.getElementById("ball");
+		ball.style.top="92px";
+		ball.style.left="92px";	
+		timer=setInterval(function() { moveBall(ball); },20);
+	}
+	
+	function moveBall(ball) {
+		var x=2,y=2;
+		var left, top;
+		if (Math.random() < 0.5) {
+			x = -x;
+		}
+		if (Math.random() < 0.5) {
+			y = -y;
+		}
+		left = parseInt(ball.style.left);
+		top = parseInt(ball.style.top);
+		if (top < 0 || top > 184 || left < 0 || left > 184) {
+			clearInterval(timer);
+			alert("Game over!");
+			ball.style.left="92px";
+			ball.style.top="92px"	
+		}
+		ball.style.left = (left + x) + "px";
+		ball.style.top = (top + y) + "px";
+	}
+</script>
+<title>Click the Ball</title>
+</head>
+<body>
+	<h1>Click the Ball</h1>
+	<div>
+		<button id="start">Start</button>
+	</div>
+	<div id="field"><img id="ball" src="../Images/ball.gif" alt="Ball"></div>
+</body>
+</html>

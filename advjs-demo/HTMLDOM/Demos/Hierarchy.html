@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="../Styles/styles.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+observeEvent(window,"load",function() {
+	observeEvent(document.body,"click",function(e) {
+		target = getTarget(e);
+		getNodeInfo(target);
+	});
+});
+
+function getNodeInfo(target) {
+	var msg = "<h2>You clicked on a <span>" + target.nodeName + "</span> element.</h2><ol>";
+	msg += "<li>parentNode: <span>" + target.parentNode.nodeName + "</span></li>";
+	if(target.firstChild) msg += "<li>firstChild: <span>" + target.firstChild.nodeName + "</span></li>";
+	if(target.lastChild) msg += "<li>lastChild: <span>" + target.lastChild.nodeName + "</span></li>";
+	if(target.nextSibling) msg += "<li>nextSibling: <span>" + target.nextSibling.nodeName + "</span></li>";
+	if(target.previousSibling) msg += "<li>previousSibling: <span>" + target.previousSibling.nodeName + "</span></li>";
+	msg += "<li>childNodes.length: <span>" + target.childNodes.length + "</span></li></ol>";
+
+	document.getElementById("output").innerHTML=msg;
+}
+</script>
+<title>Hierarchy</title>
+</head>
+<body>
+	<div id="output"></div>
+	<div id="content">
+		<h1>Heading 1</h1>
+		<p>Click on any element to get information about its position in the DOM.</p>
+		<h2>Heading 2</h2>
+		<ul>
+			<li>List Item 1</li>
+			<li>List Item 2</li>
+			<li>List Item 3</li>
+		</ul>
+		<hr>
+		<img src="../Images/logo.jpg" alt="Webucator">
+		<hr>
+		<table>
+		<tr>
+			<th>Table Heading</th>
+			<th>Table Heading</th>
+			<th>Table Heading</th>
+		</tr>
+		<tr>
+			<td><a href="http://www.google.com" onclick="return false">Link</a></td>
+			<td>Table Data</td>
+			<td>Table Data</td>
+		</tr>
+		<tr>
+			<td>Table Data</td>
+			<td>Table Data</td>
+			<td>Table Data</td>
+		</tr>
+		</table>
+		<form>
+			<input type="text">
+			<select>
+				<option>Option 1</option>
+				<option>Option 2</option>
+			</select>
+			<textarea></textarea>
+			<button type="button">Button</button>
+		</form>
+	</div>
+</body>
+</html>

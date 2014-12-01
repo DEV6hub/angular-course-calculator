@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cascading Dropdowns - Refactored</title>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	function selChanged(sel,data,dependentSel) {
+		var selection = sel.options[sel.selectedIndex].value;
+		var arrOptions = data[selection];
+		var opt;
+		removeAllChildren(dependentSel);
+		for (var i in arrOptions) {
+			opt = new Option(arrOptions[i]);
+			appendOptionToSelect(dependentSel,opt);
+		}
+	}
+	
+	observeEvent(window,"load",function() {
+		var statesPerCountry = {
+			"usa" : ["New York", "Florida", "Iowa", "California"],
+			"canada" : ["Ontario", "Quebec", "Manitoba", "Yukon"]
+		};
+		var country = document.getElementById("country");
+		var state = document.getElementById("state");
+		observeEvent(country,"change",function() {
+			selChanged(country,statesPerCountry,state);
+		});
+		
+		var employeesPerCompany = {
+			"Webucator" : ['Nat', 'Connie', 'Brian', 'Steve'],
+			"Microsoft" : ['Bill', 'Paul', 'Steve']
+		};
+		var company = document.getElementById("company");
+		var employee = document.getElementById("employee");
+		observeEvent(company,"change",function() {
+			selChanged(company,employeesPerCompany,employee);
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>Cascading Dropdowns</h1>
+	<form action="">
+		<label for="country">Country:</label>
+		<select id="country" name="country">
+			<option value="">Please select</option>
+			<option value="usa">USA</option>
+			<option value="canada">Canada</option>
+		</select>
+		<label for="state">State:</label>
+		<select id="state"></select>
+		<hr>
+		<label for="company">Company:</label>
+		<select id="company" name="company">
+			<option value="">Please select</option>
+			<option value="Webucator">Webucator</option>
+			<option value="Microsoft">Microsoft</option>
+		</select>
+		<label for="employee">Employee:</label>
+		<select id="employee"></select>
+	</form>
+</body>
+</html>

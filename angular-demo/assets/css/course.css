@@ -1,0 +1,69 @@
+body {
+	padding: 10px;
+	vertical-align: top;
+}
+
+input[type=text] {
+	min-width: 300px;
+}
+
+.expandable-box {
+	display: block;
+	color: #000;
+	width: 200px;
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+.expandable-box .header {
+	padding: 4px;
+	color: #ffff00;
+	width: 100%;
+	background-color: #d08b2c;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.expandable-box .header:hover {
+	cursor: pointer;
+}
+
+.expandable-box .content {
+	display: block;
+	padding: 4px;
+	height: 60px;
+	width: 100%;
+	background-color: #f3df7f;
+}
+
+table {
+	margin-top: 20px;
+}
+td {
+	padding: 4px;
+	width: 33.333%;
+}
+
+form {
+	max-width: 400px;
+}
+
+.invalidField {
+	font-weight: bold;
+	color: #c00;
+}
+
+input {
+	margin-bottom: 10px;
+}
+
+.simple {
+	color: blue;
+	font-weight: bold;
+}
+
+.instructionToggleWrapper, .instructionToggleWrapper label, .instructionToggleWrapper input {
+	cursor: pointer;
+}

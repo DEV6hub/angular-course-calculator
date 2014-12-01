@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../Styles/propagation.css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	observeEvent(window,"load",function() {
+		var tbl = document.getElementById("tbl");
+		var rows = tbl.getElementsByTagName("tr");
+		var edits = getElementsByClassName(tbl,"edit");
+		for (var r=0; r<rows.length; ++r) {
+			showBirthday(rows[r]);
+		}
+		for (var i=0; i<edits.length; ++i) {
+			editRow(edits[i]);
+		}
+		
+		function showBirthday(row) {
+			observeEvent(row,"click",function() {
+				alert(row.title);
+			},false);
+		}
+		
+		function editRow(row) {
+			var id=row.parentNode.parentNode.id;
+			observeEvent(row,"click",function() {
+				alert('Edit record form: ' + id);
+			},false);
+		}
+	});
+</script>
+<title>Event Propagation: Table</title>
+</head>
+<body>
+<table id="tbl">
+	<caption>The Beatles</caption>
+	<tr title="Born October 9, 1940." id="1">
+		<td>John</td>
+		<td>Lennon</td>
+		<td><img src="../Images/edit.gif" alt="Edit Row" class="edit"></td>
+	</tr>
+	<tr title="Born June 18, 1942." id="2">
+		<td>Paul</td>
+		<td>McCartney</td>
+		<td><img src="../Images/edit.gif" alt="Edit Row" class="edit"></td>
+	</tr>
+	<tr title="Born February 25, 1943." id="3">
+		<td>Ringo</td>
+		<td>Starr</td>
+		<td><img src="../Images/edit.gif" alt="Edit Row" class="edit"></td>
+	</tr>
+	<tr title="Born July 7, 1940." id="4">
+		<td>George</td>
+		<td>Harrison</td>
+		<td><img src="../Images/edit.gif" alt="Edit Row" class="edit"></td>
+	</tr>
+</table>
+</body>
+</html>

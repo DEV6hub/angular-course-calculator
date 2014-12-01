@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Timer</title>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	function resetTimer(seconds){
+		var btnStart = document.getElementById("btnStart");
+		var btnReset = document.getElementById("btnReset");
+		document.getElementById("timeLeft").value = seconds;
+		clearInterval(timer);
+		btnStart.disabled = false;
+		btnReset.disabled = true;
+	}
+	
+	function decrementTimer(){
+		var timeLeft = document.getElementById("timeLeft");
+		var btnStart = document.getElementById("btnStart");
+		var btnReset = document.getElementById("btnReset");
+		timesUp = false;
+		btnStart.disabled = true;
+		btnReset.disabled = false;
+		timeLeft.value--;
+		if (timeLeft.value < 0) {
+			resetTimer(10);
+			alert("Time's up!");
+		}
+	}
+		
+	function pauseTimer() {
+
+	}
+
+	var timer, timesUp;
+	observeEvent(window,"load",function() {
+		var timeLeft = document.getElementById("timeLeft");
+		var btnStart = document.getElementById("btnStart");
+		var btnReset = document.getElementById("btnReset");
+		var btnPause = document.getElementById("btnPause");
+
+		observeEvent(btnStart,"click",function() {
+			timer=setInterval(decrementTimer, 1000);
+		});
+		observeEvent(btnPause,"click",function() {
+			pauseTimer();
+		});
+		observeEvent(btnReset,"click",function() {
+			resetTimer(10);
+		});
+		observeEvent(timeLeft,"focus",function() {
+			timeLeft.blur();
+		});
+	});
+</script>
+</head>
+<body>
+<form name="Timer" onsubmit="return false;">
+	<label for="TimeLeft">Timer:</label>
+	<input type="text" id="timeLeft" name="timeLeft" size="2" value="10"><br>
+	<input type="button" name="btnStart" id="btnStart" value="Start">
+	<input type="button" name="btnPause" id="btnPause" value="Pause" disabled="disabled">
+	<input type="button" name="btnReset" id="btnReset" value="Reset" disabled="disabled">
+</form>
+</body>
+</html>

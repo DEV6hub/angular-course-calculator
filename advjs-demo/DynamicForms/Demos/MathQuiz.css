@@ -1,0 +1,16 @@
+table {
+	margin:auto;
+	border:1px solid #000066;	
+	width:300px;
+}
+td {
+	border:1px solid #000066;	
+	padding:4px;
+}
+#timeLeft, #msg {
+	text-align:center;
+}
+#msg {
+	background-color:#eeeeee;
+	font-weight:bold;
+}

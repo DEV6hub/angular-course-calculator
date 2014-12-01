@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../Styles/soccer-game.css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	var timers = [];
+	var balls = [];
+	var clickCount=0;
+	observeEvent(window,"load",function() {
+		observeEvent(document.getElementById("start"),"click",start,false);
+	});
+	
+	function miss() {
+		incrementClickCount();
+		addBall();
+	}
+	
+	function hit(e) {
+		e = e || window.event;
+		var ball = getTarget(e);
+		var field = ball.parentNode;
+		removeBall(ball);
+		incrementClickCount();
+		stopPropagation(e);
+		if (!field.hasChildNodes()) {
+			msg("Hit! Congrats! You got it in " + clickCount + " clicks.");
+			endGame();
+		} else {
+			msg("Congrats! You got one.");	
+		}
+	}
+
+	function removeBall(ball) {
+		var timerNum = ball.alt.split(' ')[1]-1;
+		var cage=document.getElementById("cage");
+		clearInterval(timers[timerNum]);
+		cage.appendChild(ball);
+		unObserveEvent(ball,"mousedown",hit,false);
+		ball.style.position="relative";
+		ball.style.left="0px";
+		ball.style.top="0px";
+	}
+	
+	function start() {
+		clickCount=0;
+		removeBalls();
+		addBall();
+		document.getElementById("start").disabled=true;
+		observeEvent(document.getElementById("field"),"click",miss,false);
+	}
+	
+	function addBall() {
+		var field=document.getElementById("field");
+		var ball=document.createElement("img");
+		balls.push(ball);
+		var ballNum = balls.length;
+		ball.src="../Images/ball.gif";
+		ball.alt="Ball " + ballNum;
+		ball.title="Ball " + ballNum;
+		ball.className="ball";
+		ball.style.top="92px";
+		ball.style.left="92px";
+		field.appendChild(ball);
+		observeEvent(ball,"mousedown",hit,false);
+		timers.push( setInterval(function() { moveBall(ball) },20) );
+	}
+	
+	function msg(msg) {
+		document.getElementById("msg").innerHTML=msg;	
+	}
+	
+	function moveBall(ball) {
+		var x=2,y=2;
+		var left, top;
+		if (Math.random() < 0.5) {
+			x = -x;
+		}
+		if (Math.random() < 0.5) {
+			y = -y;
+		}
+		left = parseInt(ball.style.left);
+		top = parseInt(ball.style.top);
+		if (top < 0 || top > 184 || left < 0 || left > 184) {
+			ball.style.border = "1px solid red";
+			msg("Game over!<br>" + ball.alt + " is at pos x:" + left + ", y:" + + top);
+			endGame();
+		}
+		ball.style.left = (left + x) + "px";
+		ball.style.top = (top + y) + "px";
+	}
+	
+	function removeBalls() {
+		var field=document.getElementById("field");		
+		removeAllChildren(field);
+		balls=[];
+	}
+	
+	function incrementClickCount() {
+		clickCount++;
+		msg(clickCount + " clicks");
+	}
+	
+	function endGame() {
+		var field=document.getElementById("field");
+		var remainingBalls=field.childNodes;
+		unObserveEvent(document.getElementById("field"),"click",miss,false);
+		for (var t=0; t<timers.length; ++t) {
+			clearInterval(timers[t]);
+		}
+		timers=[];
+		for (var b=0; b<remainingBalls.length; b++) {
+			unObserveEvent(remainingBalls[b],"mousedown",hit,false);
+		}
+		balls=[];
+		document.getElementById("start").disabled=false;
+	}
+</script>
+<title>Click the Ball</title>
+</head>
+<body>
+	<div id="container">
+		<h1>Click the Ball</h1>
+		<div>
+			<button id="start">Start</button>
+			<span id="level">Level 1</span>
+		</div>
+		<div id="msg">Click the ball to make it disappear. If you miss, another ball will be added.</div>
+		<div id="field"></div>
+		<div id="cage">
+			<h3>CAGE</h3>
+		</div>
+	</div>
+</body>
+</html>

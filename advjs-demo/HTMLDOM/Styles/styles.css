@@ -1,0 +1,24 @@
+h1 {
+	color:red;
+}
+
+ul {
+	padding:10px; 
+	border:1px solid black;
+}
+
+ul li 	{
+	border:1px dotted red;
+}
+
+#output {
+	padding:0px 15px;
+	border:1px solid black;
+	background-color:#eee;
+	font-family:Verdana, Geneva, sans-serif;
+}
+
+#output span {
+	text-decoration:underline;
+	color:#600;
+}

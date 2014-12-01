@@ -1,0 +1,29 @@
+<html>
+<head>
+<script type="text/javascript">
+function getAttributeValue(NODE,ATT)
+{
+	alert(NODE.getAttribute(ATT));
+}
+</script>
+<title>getElementById()</title>
+</head>
+
+<body onload="getAttributeValue(document.getElementById('BeatleList'),'start');">
+<h1>Rockbands</h1>
+<h2>Beatles</h2>
+<ol id="BeatleList" start="5">
+	<li>Paul</li>
+	<li>John</li>
+	<li>George</li>
+	<li>Ringo</li>
+</ol>
+<h2>Rolling Stones</h2>
+<ol id="StonesList">
+	<li>Mick</li>
+	<li>Keith</li>
+	<li>Charlie</li>
+	<li>Bill</li>
+</ol>
+</body>
+</html>

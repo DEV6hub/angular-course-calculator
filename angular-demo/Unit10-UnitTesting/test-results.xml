@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="Chrome 31.0 (Windows)" package="undefined" timestamp="2014-01-07T18:31:45" id="0" hostname="Oliver-PC" tests="0" errors="1" failures="0" time="0">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36"/>
+    </properties>
+    <system-out><![CDATA[Chrome 31.0 (Windows) ERROR
+	Uncaught ReferenceError: minErr is not defined
+	at C:/www/HTML5Courseware/AngularJS/Demos/lib/angular-1.2/angular-loader.js:19
+
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

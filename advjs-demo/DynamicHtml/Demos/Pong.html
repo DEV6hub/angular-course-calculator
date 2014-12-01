@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<head>
+<title>Pong</title>
+<link href="pong.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	//global variables to be used everywhere on the page, including all the functions.
+	var pong, racket, wall, court, btnStart;
+	var pongTop, pongLeft, pongBottom, pongRight;
+	var racketTop, racketLeft, racketRight, racketBottom, racketWidth, racketOffset;
+	var wallTop, wallLeft, wallRight;
+	var gameStarted;
+	var timer;
+	var vMove, hMove, hMoveNum;
+	var delay, score;
+	
+	//let's initialize everything, notice init() is called when the page loads and at the end of endGame()
+	function init(){
+		pong = document.getElementById("divPong");
+		racket = document.getElementById("divRacket");
+		wall = document.getElementById("divWall");
+		court = document.getElementById("divCourt");
+		btnStart = document.getElementById("divStart");
+		pongTop = 1;
+		pongLeft = 150;
+		racketTop = 330;
+		racketLeft = 100;
+		racketWidth = 150;
+		racketOffset = racketLeft;
+		wallTop = 0;
+		wallLeft = 0;
+		wallRight = 800;
+		vMove = 4;
+		hMoveNum = 1;
+		hMove = 0;
+		score = 0;
+		delay = 20;
+		document.getElementById("spanScore").innerHTML = score;
+		//let's make sure the Start button is always visible, so we'll move the zIndex above everything else.
+		btnStart.style.zIndex = "30";
+		gameStarted = false;
+		//when the user clicks on the start button, call on the startGame() function
+		observeEvent(btnStart,"click",startGame);
+	}
+	
+	function startGame(){
+		//when the user's mouse moves, call the dragRacket() function to track the racket's movement.
+		observeEvent(document,"mousemove",dragRacket);
+		gameStarted = true;
+		//let's track the pont's top, left, bottom and right position properties
+		pong.style.top = pongTop + "px";
+		pong.style.left = pongLeft + "px";
+		pongBottom = pongTop+10;
+		pongRight = pongLeft+10;
+		
+		//let's also track the racket's top, left, bottom and right properties
+		racket.style.top = racketTop + "px";
+		racket.style.left = racketLeft + "px";
+		racket.style.width = racketWidth + "px";
+		racketRight = racketLeft + 150;
+		racketBottom = racketTop + 20;
+		//notice the start button now has an index of 10, so it goes behind the "court", which has a zIndex of 20.
+		btnStart.style.zIndex = "10";
+		
+		/*
+		* setInterval() calls on movePong() (to move the pong of course!) 
+		* at specified intervals in milliseconds (20ms in this case - so like 0.002 seconds which is really fast!). 
+		*/
+		timer = setInterval(movePong, delay);
+	}
+	
+	//function that moves the pong
+	function movePong(){
+		//per init(), the pong's top position starts at 1, let's remove the "px" for now so we can add the vertical animation
+		pongTop = parseInt(pong.style.top);
+		//per init(), we're going to initially move the poing vertically 4 pixes down at a time
+		pongTop += vMove;
+		//make sure we add the "px" back to the pong's top position style.
+		pong.style.top = pongTop + "px";
+		//per init(), the pong's left position starts at 150, let's remove the "px" for now so we can add the horizontal animation
+		pongLeft = parseInt(pong.style.left);
+		//per init(), we're going to initially not move the pong horizontally (0 pixes) at a time 
+		pongLeft += hMove;
+		//make sure we add the "px" back to the pong's left position style.
+		pong.style.left = pongLeft + "px";
+		//set the pong's bottom and right positions based on the current top and left positions, respectively.
+		pongBottom = pongTop+10;
+		pongRight = pongLeft+10;
+		//as the user moves the mouse/racket, let's track the racket by calling on trackRacket().
+		trackRacket();
+		
+		/*
+		* if the pong's left position is less than or equal to the value of wallLeft, 0 per init(), OR...
+		* if the pong's right position is greater than or equal to the value of wallLeft, 800 per init(), THEN...
+		** you can also say: "if the pong hits the left wall or the right wall, then..."
+		*/
+		if (pongLeft <= wallLeft || pongRight >= wallRight) {
+			//hMove = hMove * -1
+			hMove *= -1;
+		}	
+		
+		/*
+		* if the pong's bottom posistion is greater than or equal to the racket's top position AND...
+		* if the pong's right position is greater than or equal the rocket's left position AND...
+		* if the pong's left position is less than or equal to the racket's width - .67 * the racket's width, THEN..
+		**you can also say: "if the pong hits the racket about 1/3 from the racket's width on the left, THEN..."
+		*/
+		if (pongBottom >= racketTop && pongRight >= racketLeft && 
+				pongLeft <= racketRight-.67*racketWidth) {
+			//the pong will move a little faster vertically
+			vMove *= -1;
+			//the pong will move horizontally left (notice the "-").
+			hMove = -hMoveNum;
+		/*
+		*  else if the pong hits the racket 1/3 from the racket's width on the right, THEN...
+		*/
+		} else if (pongBottom >= racketTop && pongRight >= racketLeft && 
+				pongLeft <= racketRight-.33*racketWidth) {
+			//the pong will move a little faster vertically
+			vMove*=-1;
+			//the pong will not move horizontally
+			hMove=0;
+		/*
+		* else if the pong hits the racket THEN...
+		*/
+		} else if (pongBottom >= racketTop &&  pongRight >= racketLeft && 
+					pongLeft <= racketRight) {
+			//the pong will move a litter faster vertically
+			vMove *= -1;
+			//the poing will move horizontally right
+			hMove = hMoveNum;
+		/*
+		* else if the the pong's top postion is greater than the racket's bottom position, then end the game.
+		* note that in the DOM, "top" starts at 0 and its value goes up as it moves down
+		*/
+		} else if (pongTop > racketBottom) {
+			endGame();
+		}
+		
+		/*
+		* if the pong's top position is less than or equal to wallTop, 0 per init(), THEN...
+		* you can also say: "when the pong hits the top of the wall, THEN..."
+		*/
+		if (pongTop <= wallTop) {
+			//move the pong vertically a little faster
+			vMove = Math.abs(vMove) + 1;
+			//move the pong horizontally a little faster
+			hMoveNum = hMoveNum + 1;
+			//track the user's score
+			score++;
+			//display the updated score
+			document.getElementById("spanScore").innerHTML = score;
+		}
+	}
+	
+	/*
+	* function to end the game
+	*/
+	function endGame(){
+		//game will end, so stop oberving the "mousemove" event on the racket
+		unObserveEvent(document,"mousemove",dragRacket);
+		//clear the timer
+		clearInterval(timer);
+		//alert the user that the game is over
+		alert("Game Over");
+		//call on init() to reset everything and allow the user to start over
+		init();
+	}
+	
+	/*
+	* function to track the racket's top, left, right, and bottom positions.  
+	* also sets the width of the racket.
+	*/
+	function trackRacket(){
+		racketTop = parseInt(racket.style.top)+10;
+		racketLeft = parseInt(racket.style.left);
+		racketWidth = parseInt(racket.style.width);
+		racketRight = racketLeft + racketWidth;
+		racketBottom = racketTop + 20;
+	}
+	
+	/*
+	* function that "drags" the racket in response the user's mouse movement.
+	* Param "e" is the event, in this case, the mouse's movement.
+	*/
+	function dragRacket(e){
+		if (window.event) {
+			e = event; //for IE
+		}
+		
+		//if the game has started - notice gameStarted is a boolean (true/false) variable
+		if (gameStarted) {
+			/*
+			* set the racket's left position based on the client's movement 
+			* note that the clientX event attribute returns the horizontal coordinate/position of the mouse pointer when an event was triggered.
+			* note that according to init(), the racketOffset equals the value of racketLeft
+			*/ 
+			racket.style.left = (e.clientX - racketOffset) + "px";
+		}
+	}
+	
+	//when the window loads, call on init() to set everything up for the game.
+	observeEvent(window,"load",init);
+</script>
+</head>
+<body>
+	<!--the green course--->
+	<div id="divCourt">
+    	<!-- the blue wall on top -->
+		<div id="divWall"></div>
+        <!-- the pong! -->
+		<div id="divPong">
+        	<!--
+            	IE6 needs a comment here or it won't allow the height of the 
+                div to be set smaller than the default height
+            -->
+        </div>
+        <!-- the racket you'll be moving -->
+		<div id="divRacket"></div>
+	</div>
+    <!-- the start button -->
+	<button id="divStart">START</button>
+    <!-- the score will be kept here once the game starts -->
+	<div id="divScore">Score: <span id="spanScore">0</span></div>
+</body>
+</html>

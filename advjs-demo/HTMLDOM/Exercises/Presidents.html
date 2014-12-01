@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Presidents</title>
+<link rel="stylesheet" type="text/css" href="Presidents.css">
+<script type="text/javascript" src="DOM2.js"></script>
+<script type="text/javascript">
+	function init()
+	{
+		/*
+			Write code to get all the elements of the "btn" class in a nodeList.
+			Loop through the nodeList attaching a click event to each button with CreateMessageBox() as the callback function.
+		*/
+	}
+	
+	function CreateMessageBox(e)
+	{
+		if (!e) e = window.event;
+		var target = e.target || e.srcElement;
+		var id = target.id;
+		var msgContainer = document.getElementById("MessageBoxes");
+		
+		var txtTitle = GetTitleText(id);
+		var txtBody = GetBodyText(id);
+		
+		/*
+			Write code to create a message box with the following HTML structure (ignore whitespace):
+			<div>
+				<h1 class="PresTitle">txtTitle here</h1>
+				<p class="PresBody">txtBody here</p>
+			</div>
+			Append the div to msgContainer.
+		*/
+	}
+	
+	function GetTitleText(ID)
+	{
+		switch (ID)
+		{
+			case "GeorgeWashington" :
+				return "George Washington";
+			case "JohnAdams" :
+				return "John Adams";
+		}
+	}
+	
+	function GetBodyText(ID)
+	{
+		switch (ID)
+		{
+			case "GeorgeWashington" :
+				return "On April 30, 1789, George Washington, standing on the balcony of Federal Hall on Wall Street in New York, took his...";
+			case "JohnAdams" :
+				return "Learned and thoughtful, John Adams was more remarkable as a political philosopher...";
+		}
+	}
+	
+	window.onload = init;
+</script>
+</head>
+
+<body>
+<form onsubmit="return false">
+	<input class="btn" type="button" id="GeorgeWashington" value="George Washington">
+	<input class="btn" type="button" id="JohnAdams" value="John Adams">
+</form>
+<div id="MessageBoxes"></div>
+</body>
+</html>

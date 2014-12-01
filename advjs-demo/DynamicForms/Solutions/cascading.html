@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cascading Select Menus</title>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	function selChanged(sel,data,dependentSel) {
+		var selection = sel.options[sel.selectedIndex].value;
+		var arrOptions = data[selection];
+		var opt;
+		dependentSel.options.length = 0;
+		for (var i in arrOptions) {
+			opt = new Option(arrOptions[i]);
+			appendOptionToSelect(dependentSel,opt);
+		}
+	}
+	
+	observeEvent(window,"load",function() {
+		var rockBands = {
+			"beatles" : ["Paul McCartney", "John Lennon", "George Harrison", "Ringo Starr"],
+			"stones" : ["Mick Jagger", "Keith Richards", "Charlie Watts", "Bill Wyman"],
+			"genesis" : ["Phil Collins", "Peter Gabriel", "Mike Rutherford"],
+			"eagles" : ["Don Henley", "Joe Walsh", "Glenn Frey"]
+		};
+		var band = document.getElementById("band");
+		var artist = document.getElementById("artist");
+		observeEvent(band,"change",function() {
+			selChanged(band,rockBands,artist);	
+		});
+	});
+</script>	
+</head>
+<body>
+<form name="Menus">
+	<label for="band">Band:</label>
+	<select id="band" name="band">
+		<option value="">Please select</option>
+		<option value="beatles">Beatles</option>
+		<option value="stones">Rolling Stones</option>
+		<option value="genesis">Genesis</option>
+		<option value="eagles">Eagles</option>
+	</select>
+	<label for="artist">Artist:</label>
+	<select id="artist"></select>
+</form>
+</body>
+</html>

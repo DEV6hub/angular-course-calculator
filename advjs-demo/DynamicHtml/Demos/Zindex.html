@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>zIndex</title>
+<link href="zindex.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	var z = 0;
+	function changeZ(elem){
+		z += 10;
+		elem.style.zIndex = z;
+		elem.innerHTML = "z: " + z;
+	}
+
+	observeEvent(window,"load",function() {
+		var divRed = document.getElementById("divRed");
+		var divBlue = document.getElementById("divBlue");
+		observeEvent(divRed,"click",function() {
+			changeZ(divRed);
+		});
+		observeEvent(divBlue,"click",function() {
+			changeZ(divBlue);
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="divRed"></div>
+	<div id="divBlue"></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../Styles/propagation.css">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	observeEvent(window,"load",function() {
+		var outer=document.getElementById("outer");
+		var inner=document.getElementById("inner");
+		var heading=document.getElementById("heading");
+		observeEvent(outer,"click",function(e) {
+			findTarget(e);
+		}, false);
+		observeEvent(inner,"click",function(e) {
+			findTarget(e);
+		}, false);
+		observeEvent(heading,"click",function(e) {
+			findTarget(e);
+		}, false);
+	});
+	
+	function findTarget(e) {
+		e.target.innerHTML += " | click | ";
+		stopPropagation(e);
+	}
+</script>
+<title>Target</title>
+</head>
+<body>
+	<h1 id="heading">Target</h1>
+	<div id="outer">outer
+		<div id="inner">inner</div>
+	</div>
+</body>
+</html>

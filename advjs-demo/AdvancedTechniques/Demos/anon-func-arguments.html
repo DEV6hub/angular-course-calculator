@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Functions as Arguments</title>
+<script type="text/javascript">
+	var values = [5, 2, 11, -7, 1];
+		
+	function combineAll(nums, initialValue, operation) {
+		var runningResult = initialValue;
+		for (var i=0; i < nums.length; i++) {
+			runningResult = operation(runningResult, nums[i]); 
+		}
+		return runningResult;
+	}
+		
+	var sum = combineAll(values, 0, function (a, b) {
+			return a+b;
+		});
+		
+	var product = combineAll(values, 1, function (a, b) {
+			return a*b;
+		});
+		
+	var list = combineAll(values, 1, function (a, b) {
+			return a + ", " + b;
+		});
+			
+	alert("Sum: " + sum);
+	alert("Product: " + product);
+	alert("Number List: " + list);
+</script>
+</head>
+<body>
+<p>Nothing to show here.</p>	
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSON</title>
+<style type="text/css">
+#output {
+	font-family:monospace;
+	background-color:#eee;
+	font-size:larger;
+}
+</style>
+<script type="text/javascript">
+/*function shows Homer'sBoss.
+ *notice the badge number being passed to it on the buton's onclick event below. This will be read on json.txt
+ */
+function showBoss(badgeNo) {
+	//create a new ajax request
+	var ajax = new XMLHttpRequest();
+	var employees;
+	//set up the ajax request (type="GET", url="json.txt", asynchronously=true)
+	ajax.open("GET", "json.txt", true);
+	/*when the "ready state" on the ajax call changes (ready states are show below)...
+	 *0: request not initialized
+	 *1: server connection established
+	 *2: request received
+	 *3: processing request
+	 *4: request finished and response is ready
+ 	 */
+	ajax.onreadystatechange = function() {
+		//once the request was received and the var employees has no value/undefined...
+		if ( this.readyState > 2 && typeof employees == "undefined" ) {
+			/*on the html element with id of "output", 
+			 *set its HTML to the "response text" returned back from the ajax call to json.txt
+			 */
+			document.getElementById("output").innerHTML = this.responseText;
+			/*
+			*set the "employees" var to the "response text" returned back from the ajax call.
+			*note that JSON.parse() parses a string as JSON and returns the parsed value.
+			*/
+			employees = JSON.parse(this.responseText);
+			//get the name of the person that employee with the specified badge number reports to.
+			alert(employees[employees[badgeNo].reportsTo].name);
+		}
+	}
+	//send the ajax request.
+	ajax.send();
+}
+
+
+</script>
+</head>
+<body>
+<button onclick="showBoss(35739)">Show Homer's Boss</button>
+<pre id="output"></pre>
+</body>
+</html>

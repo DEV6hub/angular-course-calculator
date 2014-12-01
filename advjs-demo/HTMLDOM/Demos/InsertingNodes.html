@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+observeEvent(window,"load",function() {
+	var appendElem = document.getElementById("append");
+	var prependElem = document.getElementById("prepend");
+	var changeElem = document.getElementById("change-num");
+	var replaceElem = document.getElementById("replace");
+	observeEvent(appendElem,"click",appendNewListItem,false);
+	observeEvent(prependElem,"click",prependNewListItem,false);
+	observeEvent(changeElem,"click",changeStartNum,false);
+	observeEvent(replaceElem,"click",replaceOlWithUl,false);
+});
+
+function appendNewListItem() {
+	var li = document.createElement("li");
+	var liText = document.createTextNode("New List Item");
+	li.appendChild(liText);
+	document.getElementById("first-list").appendChild(li);
+}
+
+function prependNewListItem() {
+	var li = document.createElement("li");
+	var liText = document.createTextNode("New List Item");
+	var firstList = document.getElementById("first-list");
+	li.appendChild(liText);
+	firstList.insertBefore(li,firstList.firstChild);
+}
+
+function changeStartNum() {
+	var firstList = document.getElementById("first-list");
+	var start=firstList.getAttribute("start");
+	if (start) {
+		start++;
+	} else {
+		start=2;
+	}
+	firstList.setAttribute("start",start);
+}
+
+function replaceOlWithUl() {
+	var list = document.getElementById("first-list");
+	var list2 = document.getElementById("second-list");
+	list.parentNode.replaceChild(list2,list);
+}
+</script>
+<title>Inserting Nodes</title>
+</head>
+
+<body>
+<form id="menu">
+	<button id="append" type="button">Append List Item</button>
+	<button id="prepend" type="button">Prepend List Item</button>
+	<button id="change-num" type="button">Change Start Number</button>
+	<button id="replace" type="button">Replace ordered list with bulleted list</button>
+</form>
+<ol id="first-list">
+	<li>List Item</li>
+	<li>List Item</li>
+	<li>List Item</li>
+	<li>List Item</li>
+</ol>
+<hr>
+<ul id="second-list">
+	<li>List Item</li>
+	<li>List Item</li>
+	<li>List Item</li>
+	<li>List Item</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,196 @@
+"<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Regular Expression Syntax</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<ol>
+		<script type="text/javascript">
+			function outputTest(regex, string){
+				var result = regex.test(string) ? '' : 'NOT ';
+				document.write('<li>Regular expression: "' + regex.source + '" does ' + result + 'match the string "' + string + '".</li>');
+			}
+
+			//caret (^) for start of string
+			var regex = /^foo/;
+			var string = "foo";
+			outputTest(regex, string);
+			
+			var string = "barfood";
+			outputTest(regex, string);
+			
+			//dollar ($) for end of string
+			var regex = /foo$/;
+			var string = "curfoo";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			
+			//question mark (?) for 0 or 1 of the preceding
+			var regex = /foo?/;
+			var string = "foo";
+			outputTest(regex, string);
+			
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "fo";
+			outputTest(regex, string);
+			
+			
+			//plus sign (+) for 1 or more of the preceding
+			var regex = /fo+/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "foood";
+			outputTest(regex, string);
+			
+			var string = "fd";
+			outputTest(regex, string);
+			
+			
+			//asterisk (*) for 0 or more of the preceding
+			var regex = /fo*d/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "foood";
+			outputTest(regex, string);
+			
+			var string = "fd";
+			outputTest(regex, string);
+			
+			//curly brackets with one paramter ( {n} ) for exactly n of the preceding
+			var regex = /fo{3}d/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "foood";
+			outputTest(regex, string);
+			
+			var string = "fd";
+			outputTest(regex, string);
+			
+			//curly brackets with two paramters ( {n1,n2} ) for n1 to n2 of the preceding
+			var regex = /fo{2,4}d/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "foood";
+			outputTest(regex, string);
+			
+			var string = "fooood";
+			outputTest(regex, string);
+			
+			var string = "fd";
+			outputTest(regex, string);
+			
+			//curly brackets with one paramter followed by a comma ( {n,} ) for n or more of the preceding
+			var regex = /fo{2,}d/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "foood";
+			outputTest(regex, string);
+			
+			//period (.) for any character
+			var regex = /fo.d/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "foad";
+			outputTest(regex, string);
+			
+			
+			//mention other common characters (like \d for any digits)
+			
+			//grouping using square brackets ( [] )
+			var regex = /f[aeiou]d/;
+			var string = "fad";
+			outputTest(regex, string);
+			
+			var string = "fed";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "fd";
+			outputTest(regex, string);
+			
+			//negation using the caret as the first character of the square brackets ( [^] )
+			var regex = /f[^aeiou]d/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "fqd";
+			outputTest(regex, string);
+			
+			var string = "f4d";
+			outputTest(regex, string);
+			
+			
+			//parenthesis for sub-patterns
+			var regex = /f(oo)?d/;
+			var string = "fod";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "fd";
+			outputTest(regex, string);
+			
+			//pipe (|) for optional patterns
+			var regex = /foo$|^bar/;
+			var string = "foo";
+			outputTest(regex, string);
+			
+			var string = "bar";
+			outputTest(regex, string);
+			
+			var string = "foobar";
+			outputTest(regex, string);
+			
+			//escape charcter (\) for escaping special characters (like the one's we just discussed)
+			var regex = /fo\.d/;
+			var string = "fo.d";
+			outputTest(regex, string);
+			
+			var string = "food";
+			outputTest(regex, string);
+			
+			var string = "fo4d";
+			outputTest(regex, string);
+			
+		</script>
+	</ol>
+</body>
+</html>
+"

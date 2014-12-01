@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit02 Creating An AngularJS Application</title>
+	<link rel="stylesheet" href="../lib/bootstrap-3.0.2/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../assets/css/course.css"/>
+</head>
+<body ng-app="MyApp">
+
+	<div>
+		<input type="text" ng-model="model.typingText"/>
+	</div>
+
+	<div class="alert alert-success">
+		You said {{ model.typingText }}
+	</div>
+    
+    <div>
+        1+1={{ 1+1 }}
+    </div>
+
+	<script src="../lib/angular-1.2/angular.js"></script>
+	<script src="demo-2b.js"></script>
+</body>
+</html>

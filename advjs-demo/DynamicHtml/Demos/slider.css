@@ -1,0 +1,14 @@
+#divSlider {
+	height:20px;
+	width:10px;
+	background-color:red;
+}
+
+#divSliderBG {
+	height:20px;
+	width:200px;
+	padding:2px;
+	background-color:blue;
+	float:left;
+	margin-right:10px;
+}
